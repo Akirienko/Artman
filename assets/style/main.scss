@@ -16,15 +16,46 @@ body {
   padding: 0;
   font-size: 17px;
   color: var(--marble, #ECF7FF);
-  font-family: "FramerSans", sans-serif;
+  // font-family: "FramerSans", sans-serif;
+  &.no-scroll {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.bg-mobile-image {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  img {
+    // position: absolute;
+    // right: 0;
+    object-position: right;
+  }
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.text-base {
+  font-weight: 300;
 }
 
 section {
   overflow: hidden;
 }
 
+.container {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1140px;
+  @media (min-width:1024px) {
+    padding: 0 30px;
+  }
+}
+
 html {
-  // font-family: "FramerSans", system-ui, sans-serif;
   font-family: "FramerSans", sans-serif;
   font-weight: 300;
   scroll-behavior: smooth;
