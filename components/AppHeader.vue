@@ -18,6 +18,7 @@ const menu = [
   },
 ]
 
+// const screenWidth = ref(screen.width);
 const activePage = ref(false);
 
 watch(activePage, (newValue) => {
@@ -28,6 +29,34 @@ watch(activePage, (newValue) => {
   }
 });
 
+const testList = ref(0)
+
+const indicatorStyle = computed(() => {
+  if (typeof window !== 'undefined' && window.screen.width > 1024) {
+    const offset = (testList.value) * 41;
+    return {
+      transform: `translateX(${offset}%)`,
+      width: "345px", // Змініть ширину паленки за потреби
+    };
+  }
+});
+
+
+
+const scrollToSection = (event, index) => {
+  console.log(index);
+  console.log('event', event.target);
+
+  const targetSection = event.target;
+  if (targetSection) {
+    console.log('targetSection TRUE', );
+    window.scrollTo({
+      top: targetSection.offsetTop,
+      behavior: "smooth",
+    });
+    testList.value = index;
+  }
+};
 
 </script>
 
@@ -62,13 +91,15 @@ watch(activePage, (newValue) => {
 
       <div class="menu">
         <NuxtLink
-          v-for="item in menu"
+          v-for="(item, index) in menu"
           :key="item.title"
           :to="item.link"
+          @click="scrollToSection($event, index)"
         >
           {{item.title}}
-          <img class="" src="@/assets/image/headerLine.svg" alt="header line">
         </NuxtLink>
+        <img class="menu-line" :style="indicatorStyle" src="@/assets/image/headerLine.svg" alt="header line">
+
       </div>
 
       <div class="language">
@@ -170,6 +201,7 @@ watch(activePage, (newValue) => {
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 2.8px;
+      z-index: 11;
       img {
         height: 32px;
       }
@@ -178,6 +210,17 @@ watch(activePage, (newValue) => {
       }
       @media (min-width:1024px) {
         display: none;
+      }
+    }
+    &-line {
+      position: absolute;
+      z-index: 10;
+      width: 345px;
+      transition: ease-out .7s;
+      height: 25px;
+      bottom: -20px;
+      @media (min-width:1024px) {
+        left: -110px;
       }
     }
   }
@@ -295,7 +338,7 @@ watch(activePage, (newValue) => {
   opacity: 0;
   transition: .8s;
   transform: translateY(-150%);
-  z-index: 5;
+  z-index: 100;
   top: 0;
   &.active {
     opacity: 1;
