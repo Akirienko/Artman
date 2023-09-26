@@ -4,7 +4,8 @@
       <img class="" src="@/assets/image/main/mainBackgroundMobile.webp" alt="artman">
     </div>
     <div class="desk-mobile-image">
-      <img class="wave" src="@/assets/image/main/ParalaxBackWave.webp" alt="wave">
+      <!-- <img class="wave" src="@/assets/image/main/ParalaxBackWave.webp" alt="wave"> -->
+      <div class="wave"></div>
 
       <img class="artman-desk" src="@/assets/image/main/mainBackgroundDesk.webp" alt="artman">
     </div>
@@ -24,7 +25,8 @@
               movies in a near-future world, to become a real legend!
             </template>
           </MainTextComponent>
-          <div class="song"></div>
+          <div class="song">
+          </div>
           <div class="store">
             <NuxtLink
               href="#"
@@ -85,7 +87,20 @@
     left: 0;
     .wave {
       position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: url('@/assets/image/main/ParalaxBackWave.webp');
+      background-repeat: repeat-x;
+      background-size: 5000px 100vh;
+      background-position: left;
+      animation: moveSmoke 10s linear infinite ;
+      z-index: -1;
     }
+  }
+}
+@keyframes moveSmoke {
+  to {
+    background-position: -5000px 0;
   }
 }
 .store {
@@ -124,6 +139,9 @@
         @media (min-width:1024px) {
           display: none;
         }
+      }
+      @media (min-width:1024px) {
+        justify-content: center;
       }
     }
     &__right {

@@ -18,10 +18,9 @@ const menu = [
   },
 ]
 
-// const screenWidth = ref(screen.width);
-const activePage = ref(false);
+const menuOpen = ref(false);
 
-watch(activePage, (newValue) => {
+watch(menuOpen, (newValue) => {
   if (newValue) {
     document.body.classList.add('no-scroll');
   } else {
@@ -29,32 +28,48 @@ watch(activePage, (newValue) => {
   }
 });
 
-const testList = ref(0)
+const activeList = ref(0);
+const offset = ref(0);
+
+onMounted(() => {
+    const menuItems = document.querySelectorAll('.header-wrapper .menu a');
+    for (let i = 0; i < menuItems.length; i++) {
+      if (menuItems[i].classList.contains('router-link-exact-active')) {
+        return activeList.value = i;
+      }
+    }
+})
 
 const indicatorStyle = computed(() => {
+
+  if (activeList.value <= 1) {
+    offset.value = (activeList.value) * 41;
+  }
+  if (activeList.value > 1) {
+    offset.value = (activeList.value) * 43.5;
+  }
   if (typeof window !== 'undefined' && window.screen.width > 1024) {
-    const offset = (testList.value) * 41;
+
     return {
-      transform: `translateX(${offset}%)`,
-      width: "345px", // Змініть ширину паленки за потреби
+      transform: `translateX(${offset.value}%)`,
+      width: "345px",
     };
   }
 });
 
-
-
-const scrollToSection = (event, index) => {
+const scrollToActiveLink = (event, index) => {
   console.log(index);
   console.log('event', event.target);
 
   const targetSection = event.target;
   if (targetSection) {
-    console.log('targetSection TRUE', );
+
     window.scrollTo({
       top: targetSection.offsetTop,
       behavior: "smooth",
     });
-    testList.value = index;
+    activeList.value = index;
+    console.log('targetSection TRUE', activeList.value);
   }
 };
 
@@ -94,7 +109,7 @@ const scrollToSection = (event, index) => {
           v-for="(item, index) in menu"
           :key="item.title"
           :to="item.link"
-          @click="scrollToSection($event, index)"
+          @click="scrollToActiveLink($event, index)"
         >
           {{item.title}}
         </NuxtLink>
@@ -105,7 +120,7 @@ const scrollToSection = (event, index) => {
       <div class="language">
         <button
           class="burger"
-          @click="activePage = !activePage"
+          @click="menuOpen = !menuOpen"
         >
 
           <svg width="74" height="60" viewBox="0 0 74 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +141,7 @@ const scrollToSection = (event, index) => {
       <!-- Mobile Menu -->
       <div
         class="mobile-wrapper"
-        :class="activePage ? 'active' : ''"
+        :class="menuOpen ? 'active' : ''"
       >
         <div class="top">
           <NuxtLink to="/">
@@ -152,7 +167,7 @@ const scrollToSection = (event, index) => {
             </svg>
           </NuxtLink>
           <div
-            @click="activePage = !activePage"
+            @click="menuOpen = !menuOpen"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 28 32" fill="none">
               <path d="M13.4592 0.160718L0.459242 8.61766C0.173019 8.80385 0 9.12455 0 9.46888V22.5311C0 22.8754 0.173019 23.1961 0.459244 23.3823L13.4592 31.8393C13.7886 32.0536 14.2113 32.0536 14.5408 31.8393L27.5408 23.3823C27.827 23.1961 28 22.8754 28 22.5311V9.46888C28 9.12455 27.827 8.80385 27.5408 8.61766L14.5408 0.160718C14.2114 -0.0535727 13.7887 -0.0535727 13.4592 0.160718Z" fill="#ECF7FF"/>
@@ -165,6 +180,7 @@ const scrollToSection = (event, index) => {
             v-for="item in menu"
             :key="item.title"
             :to="item.link"
+            @click="menuOpen = !menuOpen"
           >
             {{ item.title }}
             <img class="" src="@/assets/image/headerLine.svg" alt="header line">
