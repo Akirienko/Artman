@@ -120,6 +120,7 @@
       }
     }
     @media (min-width:1024px) {
+      justify-content: space-around;
       .content {
         order: 2;
       }

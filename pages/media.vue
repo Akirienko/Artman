@@ -1,0 +1,315 @@
+<script setup>
+
+</script>
+
+<template>
+  <section class="media">
+    <img class="media-bg" src="@/assets/image/media/mediaBackground.webp" alt="">
+    <div class="media-wrapper container">
+      <div class="social-media">
+        <div class="social-media__mobile">
+          <div class="dots">
+            <img src="@/assets/image/dots.svg" alt="dots">
+          </div>
+          <NuxtLink to="#">
+            <img src="@/assets/image/media/trailer.png" alt="button trailer">
+          </NuxtLink>
+          <NuxtLink to="#">
+            <img src="@/assets/image/media/wallpaper.png" alt="button wallpaper">
+          </NuxtLink>
+          <NuxtLink to="#">
+            <img src="@/assets/image/media/youtube.png" alt="button youtube">
+          </NuxtLink>
+        </div>
+        <div class="social-media__desktop">
+          <NuxtLink to="#" class="media-block">
+            <img src="@/assets/image/media/mediaButtonBlock.png" alt="button download">
+            <div class="media-block__cercle">
+              <img src="@/assets/image/media/downloadDesk.svg" alt="download">
+              <img src="@/assets/image/media/downloadDeskHover.svg" alt="download">
+            </div>
+            <span>download wallpaper</span>
+          </NuxtLink>
+          <NuxtLink to="#" class="media-block">
+            <img src="@/assets/image/media/mediaButtonBlock.png" alt="button youtube">
+            <div class="media-block__cercle">
+              <img src="@/assets/image/media/listen.svg" alt="download">
+              <img src="@/assets/image/media/listenHover.svg" alt="download">
+            </div>
+            <span>listen ost on youtube</span>
+          </NuxtLink>
+          <NuxtLink to="#" class="media-block">
+            <img src="@/assets/image/media/mediaButtonBlock.png" alt="button trailer">
+            <div class="media-block__cercle">
+              <img src="@/assets/image/media/play.svg" alt="download">
+              <img src="@/assets/image/media/playHover.svg" alt="download">
+            </div>
+            <span>gameplay trailer</span>
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="contact-us">
+        <div class="logo">
+          <img src="@/assets/image/wayheartLogo.svg" alt="wayheart">
+        </div>
+        <div class="store">
+          <NuxtLink to="#">
+            <span>App Store</span>
+            <img src="@/assets/image/media/appStore.svg" alt="appstore">
+            <img src="@/assets/image/media/appStoreHover.svg" alt="appstore">
+          </NuxtLink>
+          <NuxtLink to="#">
+            <span>google play</span>
+            <img src="@/assets/image/media/googlePlay.svg" alt="appstore">
+            <img src="@/assets/image/media/googlePlayHover.svg" alt="appstore">
+          </NuxtLink>
+        </div>
+        <div class="contacts">
+          <NuxtLink to="#">
+            <span>contact us</span>
+            <img src="@/assets/image/media/gmail.svg" alt="appstore">
+            <img src="@/assets/image/media/gmailHover.svg" alt="appstore">
+          </NuxtLink>
+          <NuxtLink to="#">
+            <span>folow us</span>
+            <img src="@/assets/image/media/twitter.svg" alt="appstore">
+            <img src="@/assets/image/media/twitterHover.svg" alt="appstore">
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="copyright container">
+    <p>
+      Artman™ is a registered trademark. All rights are the property of their respective owners. Copyright © 2024
+    </p>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.copyright {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  @media (min-width:1024px) {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    opacity: .5;
+    p {
+      font-size: 12px;
+      letter-spacing: 0.6px;
+    }
+  }
+}
+.media {
+  padding: 20px 0;
+  .media-bg {
+    display: none;
+  }
+  &-wrapper {
+    .social-media {
+      &__desktop {
+        display: none;
+      }
+      &__mobile {
+        margin-bottom: 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .dots {
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          margin-right: -50%;
+          transform: translate(-50%, -50%);
+          width: 30px;
+          height: 625px;
+          display: flex;
+          justify-content: center;
+        }
+        a {
+          display: block;
+          margin-bottom: 24px;
+          width: 340px;
+        }
+      }
+    }
+    .contact-us {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        img {
+          width: 190px;
+        }
+      }
+      a {
+        display: flex;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        width: 340px;
+        span {
+          z-index: 3;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 20px;
+          letter-spacing: 2.8px;
+          text-transform: uppercase;
+          color: var(--Marble, #ECF7FF);
+        }
+        img {
+          position: absolute;
+          z-index: 1;
+          &:last-child {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  @media (min-width:1024px) {
+    height: calc(100vh - 60px);
+    padding: 0;
+    .media-bg {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .media-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      .social-media {
+        &__mobile {
+          display: none;
+        }
+        &__desktop {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 150px;
+          .media-block {
+            display: block;
+            &>img {
+              width: 343px;
+            }
+            &__cercle {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin-right: -50%;
+              transform: translate(-50%, -50%);
+              img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+                width: 144px;
+                height: 144px;
+                transition: ease-out .5s;
+                &:last-child {
+                  z-index: 2;
+                  opacity: 0;
+                  width: 88px;
+                  height: 88px;
+                }
+              }
+            }
+            span {
+              font-size: 19px;
+              font-weight: 600;
+              line-height: 140%;
+              letter-spacing: 2.85px;
+              text-transform: uppercase;
+              color: var(--Marble, #ECF7FF);
+              position: absolute;
+              bottom: -68px;
+              left: 50%;
+              margin-right: -50%;
+              transform: translate(-50%, -50%);
+            }
+            &:hover {
+              .media-block {
+                &__cercle {
+                  img {
+                    &:first-child {
+                      opacity: 0;
+                    }
+                    &:last-child {
+                      opacity: 1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .contact-us {
+        a {
+        margin-bottom: 50px;
+        span {
+          font-size: 19px;
+          letter-spacing: 3.8px;
+        }
+        img {
+          position: absolute;
+          z-index: 1;
+          transition: ease-out .5s;
+          &:last-child {
+            display: block;
+            z-index: 2;
+            opacity: 0;
+          }
+        }
+        &:hover {
+          img {
+            &:first-child {
+              opacity: 0;
+            }
+            &:last-child {
+              opacity: 1;
+            }
+          }
+        }
+      }
+        .logo {
+          position: absolute;
+          top: 30%;
+          left: 50%;
+          margin-right: -50%;
+          transform: translate(-50%, -50%);
+          img {
+            width: 300px;
+          }
+        }
+        .store {
+          order: 2;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+        .contacts {
+          order: 1;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+}
+</style>
