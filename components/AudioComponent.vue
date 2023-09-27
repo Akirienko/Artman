@@ -5,27 +5,39 @@
     loop
     ref="audio"
     id="audio"
-    style="display:none"
+
   >
     <source src="@/assets/sounds/mainSong.mp3" type="audio/mpeg">
     Your browser does not support the audio tagю
   </audio>
 
-  <button @click="toggleSound" class="toggle-sound">PLAY</button>
+  <button @click="playHandler" class="toggle-sound">PLAY</button>
+  <button @click="pauseHandler" class="toggle-sound">Pause</button>
 </template>
 
 <script setup>
+// import { EventHub } from "../eventHub";
 
-// const audioRef = ref(null);
+const audio = ref(null);
 
-// const toggleSound = () => {
-//   let audio = audioRef.value;
-//   if (audio && audio.paused) {
-//     audio.play();
-//   } else if (audio) {
-//     audio.pause();
-//   }
-// }
+const playHandler = () => {
+  if (audio.value.paused) {
+    audio.value.play();
+  }
+};
+
+const pauseHandler = () => {
+  if (!audio.value.paused) {
+    audio.value.pause();
+  }
+};
+
+provide('playHandler', playHandler);
+provide('pauseHandler', pauseHandler);
+
+// EventHub.emit("play-audio", playHandler);
+// EventHub.emit("pause-audio", pauseHandler);
+
 
 </script>
 

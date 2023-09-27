@@ -46,6 +46,9 @@ function playAnimation() {
             </template>
           </MainTextComponent>
           <div class="song">
+            <!-- <button @click="togglePlayPause">{{ isPlaying ? 'Pause' : 'Play' }}</button> -->
+            <button @click="playAudio">Play</button>
+            <button @click="pauseHandler">Pause</button>
           </div>
           <div class="store">
             <NuxtLink
@@ -91,6 +94,36 @@ function playAnimation() {
     </div>
   </section>
 </template>
+
+<!-- <script setup>
+import { useEventHub } from "../useEventHub"; -->
+// import AudioComponent from "../components/AudioComponent.vue";
+
+// import { inject } from 'vue';
+// const playHandler = inject('playHandler');
+// const pauseHandler = inject('pauseHandler');
+
+// console.log('playHandler', playHandler);
+
+// const playAudio = () => {
+//   playHandler();
+// };
+
+// const pauseAudio = () => {
+//   pauseHandler();
+// };
+
+<!-- const playAudio = ref(false)
+
+useEventHub("play-audio", () => {
+  playAudio.value = true;
+});
+useEventHub("pause-audio", () => {
+  pauseAudio;
+}); -->
+
+
+<!-- </script> -->
 
 <style lang="scss" scoped>
 .desk-mobile-image {
