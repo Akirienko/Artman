@@ -75,6 +75,9 @@
         object-fit: contain;
         width: auto;
         top: 0;
+        @media (min-width: 1024px) {
+          height: 90vh;
+        }
         &:first-child {
           left: 0;
         }
