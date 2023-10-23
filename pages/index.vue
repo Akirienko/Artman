@@ -48,7 +48,7 @@ function playAnimation() {
           <div class="song">
             <!-- <button @click="togglePlayPause">{{ isPlaying ? 'Pause' : 'Play' }}</button> -->
             <button @click="playAudio">Play</button>
-            <button @click="pauseHandler">Pause</button>
+            <button @click="pauseAudio">Pause</button>
           </div>
           <div class="store">
             <NuxtLink
@@ -102,16 +102,14 @@ import { useEventHub } from "../useEventHub"; -->
 // import { inject } from 'vue';
 // const playHandler = inject('playHandler');
 // const pauseHandler = inject('pauseHandler');
+// const hello = inject('hello');
 
-// console.log('playHandler', playHandler);
+// console.log('hello', hello);
 
-// const playAudio = () => {
-//   playHandler();
-// };
-
-// const pauseAudio = () => {
-//   pauseHandler();
-// };
+const playAudio = () => {
+  store.playSong();
+  console.log('playSong', store.isPlaying);
+};
 
 <!-- const playAudio = ref(false)
 

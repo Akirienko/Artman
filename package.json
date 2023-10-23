@@ -15,7 +15,8 @@
     "nuxt": "^3.6.5"
   },
   "dependencies": {
-    "event-emitter": "^0.3.5",
+    "@pinia/nuxt": "^0.5.1",
+    "pinia": "^2.1.7",
     "sass": "^1.66.1",
     "swiper": "^10.2.0"
   }
