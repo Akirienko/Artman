@@ -5,39 +5,43 @@ import { Mousewheel, Pagination, EffectCreative, Parallax } from 'swiper/modules
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/parallax';
+const { t, locale } = useI18n();
 
-const sliderContent = [
+
+const sliderContentItem = [
   {
-    title: "RECRUIT A CREW",
-    subtitle: "Every choice matters, wisely selection of director, cast, composer, will be the key to a successful movi",
+    title: "features_title_1",
+    subtitle: "features_description_1",
     image: "features1"
   },
   {
-    title: "ENHANCE YOUR MOVIE",
-    subtitle: "With the help of a large talent tree, purchase movie improvements to turn it into a masterpiece",
+    title: "features_title_2",
+    subtitle: "features_description_2",
     image: "features2"
   },
   {
-    title: "Global community",
-    subtitle: "The world respond to every action, stay friendly and you will gather an army of loyal fans",
+    title: "features_title_3",
+    subtitle: "features_description_3",
     image: "features3"
   },
   {
-    title: "one artist story",
-    subtitle: "Discover the backstory of the main characters, get to the culmination of Artman's creative journey ",
+    title: "features_title_4",
+    subtitle: "features_description_4",
     image: "features4"
   },
 ]
 
+const sliderContent = ref([]);
+
+onMounted(() => {
+  sliderContent.value = sliderContentItem.map(item => ({
+    title: t(item.title),
+    subtitle: t(item.subtitle),
+    image: item.image,
+  }));
+});
 
 const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
-
-// const windowInnerHeight = ref();
-
-// onMounted(() => {
-//   windowInnerHeight.value = window.screen.height;
-//   console.log(windowInnerHeight.value);
-// });
 
 </script>
 
@@ -118,11 +122,11 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
           </div>
           <div class="slide-text">
             <h3>
-              RECRUIT A CREW
+              {{ t("features_title_1") }}
             </h3>
             <img src="@/assets/image/featuresSeparator.svg" alt="">
             <p>
-              Every choice matters, wisely selection of director, cast, composer, will be the key to a successful movi
+              {{ t("features_description_1") }}
             </p>
           </div>
         </div>
@@ -132,11 +136,11 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
           </div>
           <div class="slide-text">
             <h3>
-              ENHANCE YOUR MOVIE
+              {{ t("features_title_2") }}
             </h3>
             <img src="@/assets/image/featuresSeparator.svg" alt="">
             <p>
-              With the help of a large talent tree, purchase movie improvements to turn it into a masterpiece
+              {{ t("features_description_2") }}
             </p>
           </div>
         </div>
@@ -148,11 +152,11 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
           </div>
           <div class="slide-text">
             <h3>
-              Global community
+              {{ t("features_title_3") }}
             </h3>
             <img src="@/assets/image/featuresSeparator.svg" alt="">
             <p>
-              The world respond to every action, stay friendly and you will gather an army of loyal fans
+              {{ t("features_description_3") }}
             </p>
           </div>
         </div>
@@ -162,11 +166,11 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
           </div>
           <div class="slide-text">
             <h3>
-              one artist story
+              {{ t("features_title_4") }}
             </h3>
             <img src="@/assets/image/featuresSeparator.svg" alt="">
             <p>
-              Discover the backstory of the main characters, get to the culmination of Artman's creative journey
+              {{ t("features_description_4") }}
             </p>
           </div>
         </div>
@@ -255,6 +259,9 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
       img {
         width: 280px;
         @media (min-width:1260px) {
+          width: 320px;
+        }
+        @media (min-width:1640px) {
           width: 480px;
         }
       }

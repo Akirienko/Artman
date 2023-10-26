@@ -1,22 +1,43 @@
 <script setup>
-const menu = [
+const { t, locale } = useI18n();
+const localPath = useLocalePath();
+
+const menuItems = [
   {
-    title: "Main",
-    link: "/"
+    key: 'menu-home',
+    link: '/'
   },
   {
-    title: "About",
-    link: "/about"
+    key: 'menu-about',
+    link: '/about'
   },
   {
-    title: "Features",
-    link: "/features"
+    key: 'menu-features',
+    link: '/features'
   },
   {
-    title: "Media",
-    link: "/media"
-  },
-]
+    key: 'menu-media',
+    link: '/media'
+  }
+];
+
+const menu = ref([]);
+
+onMounted(() => {
+  // Ініціалізуємо меню при створенні компонента
+  menu.value = menuItems.map(item => ({
+    title: t(item.key),
+    link: localPath(item.link, locale.value)
+  }));
+});
+
+watch(locale, (newLocale) => {
+  // Оновлюємо меню після зміни мови
+  menu.value = menuItems.map(item => ({
+    title: t(item.key),
+    link: localPath(item.link, newLocale)
+  }));
+});
 
 const menuOpen = ref(false);
 
@@ -36,18 +57,14 @@ onMounted(() => {
     for (let i = 0; i < menuItems.length; i++) {
       if (menuItems[i].classList.contains('router-link-exact-active')) {
         return activeList.value = i;
+        //  offset.value = (activeList.value) * 50;
       }
     }
 })
 
 const indicatorStyle = computed(() => {
 
-  if (activeList.value <= 1) {
-    offset.value = (activeList.value) * 41;
-  }
-  if (activeList.value > 1) {
-    offset.value = (activeList.value) * 43.5;
-  }
+  offset.value = (activeList.value) * 50;
   if (typeof window !== 'undefined' && window.screen.width > 1024) {
 
     return {
@@ -58,9 +75,6 @@ const indicatorStyle = computed(() => {
 });
 
 const scrollToActiveLink = (event, index) => {
-  console.log(index);
-  console.log('event', event.target);
-
   const targetSection = event.target;
   if (targetSection) {
 
@@ -77,7 +91,7 @@ const scrollToActiveLink = (event, index) => {
 
 <template>
   <header>
-    <!-- Desctop Menu -->
+    <!-- Desktop Menu -->
     <div class="header-wrapper">
       <div class="logo">
         <NuxtLink to="/">
@@ -105,19 +119,26 @@ const scrollToActiveLink = (event, index) => {
       </div>
 
       <div class="menu">
-        <NuxtLink
+        <div
+          class="menu-item-wrap"
           v-for="(item, index) in menu"
           :key="item.title"
-          :to="item.link"
-          @click="scrollToActiveLink($event, index)"
         >
-          {{item.title}}
-        </NuxtLink>
+          <NuxtLink
+            :to="localPath(item.link)"
+            @click="scrollToActiveLink($event, index)"
+          >
+            {{item.title}}
+          </NuxtLink>
+        </div>
+
         <img class="menu-line" :style="indicatorStyle" src="@/assets/image/headerLine.svg" alt="header line">
 
       </div>
 
       <div class="language">
+        <LangSwichComponent custom-class="desktop-lang" />
+
         <button
           class="burger"
           @click="menuOpen = !menuOpen"
@@ -188,7 +209,7 @@ const scrollToActiveLink = (event, index) => {
         </div>
         <div class="bottom">
           <div class="language">
-            <!-- <p>ENG</p> -->
+            <LangSwichComponent custom-class="mobile-lang" />
           </div>
           <BuyButton />
         </div>
@@ -198,6 +219,19 @@ const scrollToActiveLink = (event, index) => {
 </template>
 
 <style lang="scss" scoped>
+.desktop-lang {
+  display: none;
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+}
+.mobile-lang {
+  font-size: 14px;
+  margin-left: 16px;
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
 .header-wrapper {
   background: #171A22;
   height: 60px;
@@ -211,6 +245,13 @@ const scrollToActiveLink = (event, index) => {
     }
   }
   .menu {
+    &-item-wrap {
+      width: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
     a {
       display: none;
       margin-bottom: 0;
@@ -218,6 +259,7 @@ const scrollToActiveLink = (event, index) => {
       line-height: 20px;
       letter-spacing: 2.8px;
       z-index: 11;
+      margin: 0;
       img {
         height: 32px;
       }
@@ -236,11 +278,13 @@ const scrollToActiveLink = (event, index) => {
       height: 25px;
       bottom: -20px;
       @media (min-width:1024px) {
-        left: -110px;
+        left: -95px;
       }
     }
   }
   .language {
+    display: flex;
+    align-items: center;
       .burger {
       background: transparent;
       border: none;

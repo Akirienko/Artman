@@ -13,16 +13,16 @@
         <div class="main-content__left">
           <MainTextComponent>
             <template v-slot:undertitle>
-              A ROLANDO AGUILLON’S GAME
+              {{ $t("home_undertitle") }}
             </template>
             <template v-slot:title >
-              CINEMA <span class="text-base">PRODUCER </span> <br>
+              <!-- CINEMA <span class="text-base">PRODUCER </span> <br>
               <span class="text-base">SIMULATOR</span> IN WORLD OF <br>
-              CYBERPUNK <span class="text-base">HOLLYWOOD</span> 2056
+              CYBERPUNK <span class="text-base">HOLLYWOOD</span> 2056 -->
+              {{ $t("home_title") }}
             </template>
             <template v-slot:subtitle >
-              Immerse yourself in the creative process of making unique
-              movies in a near-future world, to become a real legend!
+              {{ $t("home_subtitle") }}
             </template>
           </MainTextComponent>
           <div class="song">
@@ -122,7 +122,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    width: 100%;
+    // width: 100%;
     // margin: 0 auto;
     // max-width: 1140px;
     &__left {

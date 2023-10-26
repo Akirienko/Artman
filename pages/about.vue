@@ -8,16 +8,16 @@
       <div class="content">
         <MainTextComponent>
           <template v-slot:undertitle>
-            esthetization
+            {{ $t("about_undertitle") }}
           </template>
           <template v-slot:title >
-            <span class="text-base">write</span> your own <br>
+            <!-- <span class="text-base">write</span> your own <br>
             movie-making <span class="text-base">story</span><br>
-            <span class="text-base">beyond time</span> and epoch<br>
+            <span class="text-base">beyond time</span> and epoch<br> -->
+            {{ $t("about_title") }}
           </template>
           <template v-slot:subtitle >
-            Manage the smallest details of film production,
-            to achieve the ultimate art of cinematography
+            {{ $t("about_subtitle") }}
           </template>
         </MainTextComponent>
         <div class="download-button">
@@ -51,8 +51,8 @@
     height: 100vh;
     right: 0;
     img {
-      object-fit: contain;
-      object-position: right;
+      // object-fit: contain;
+      // object-position: right;
       &:last-child {
         display: none;
       }
@@ -73,7 +73,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    width: 100%;
+    // width: 100%;
     .content {
       .download-button {
         margin-top: 40px;

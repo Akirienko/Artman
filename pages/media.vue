@@ -1,4 +1,5 @@
 <script setup>
+const { t } = useI18n();
 
 </script>
 
@@ -28,7 +29,7 @@
               <img src="@/assets/image/media/downloadDesk.svg" alt="download">
               <img src="@/assets/image/media/downloadDeskHover.svg" alt="download">
             </div>
-            <span>download wallpaper</span>
+            <span>{{ t("download_wallpaper") }}</span>
           </NuxtLink>
           <NuxtLink to="#" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button youtube">
@@ -36,7 +37,7 @@
               <img src="@/assets/image/media/listen.svg" alt="download">
               <img src="@/assets/image/media/listenHover.svg" alt="download">
             </div>
-            <span>listen ost on youtube</span>
+            <span>{{ t("listen_youtube") }}</span>
           </NuxtLink>
           <NuxtLink to="#" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button trailer">
@@ -44,7 +45,7 @@
               <img src="@/assets/image/media/play.svg" alt="download">
               <img src="@/assets/image/media/playHover.svg" alt="download">
             </div>
-            <span>gameplay trailer</span>
+            <span>{{ t("gameplay_trailer") }}</span>
           </NuxtLink>
         </div>
       </div>
@@ -54,36 +55,37 @@
         </div>
         <div class="store">
           <NuxtLink to="#">
-            <span>App Store</span>
+            <span>{{ t("app_store") }}</span>
             <img src="@/assets/image/media/appStore.svg" alt="appstore">
             <img src="@/assets/image/media/appStoreHover.svg" alt="appstore">
           </NuxtLink>
           <NuxtLink to="#">
-            <span>google play</span>
+            <span>{{ t("google_play") }}</span>
             <img src="@/assets/image/media/googlePlay.svg" alt="appstore">
             <img src="@/assets/image/media/googlePlayHover.svg" alt="appstore">
           </NuxtLink>
         </div>
         <div class="contacts">
           <NuxtLink to="#">
-            <span>contact us</span>
+            <span>{{ t("contact_us") }}</span>
             <img src="@/assets/image/media/gmail.svg" alt="appstore">
             <img src="@/assets/image/media/gmailHover.svg" alt="appstore">
           </NuxtLink>
           <NuxtLink to="#">
-            <span>folow us</span>
+            <span>{{ t("follow_us") }}</span>
             <img src="@/assets/image/media/twitter.svg" alt="appstore">
             <img src="@/assets/image/media/twitterHover.svg" alt="appstore">
           </NuxtLink>
         </div>
       </div>
     </div>
+    <div class="copyright container">
+      <p>
+        Artman™ is a registered trademark. All rights are the property of their respective owners. Copyright © 2024
+      </p>
+    </div>
   </section>
-  <div class="copyright container">
-    <p>
-      Artman™ is a registered trademark. All rights are the property of their respective owners. Copyright © 2024
-    </p>
-  </div>
+
 </template>
 
 <style lang="scss" scoped>

@@ -1,8 +1,8 @@
 <template>
   <div class="main-background">
-    <svg width="100vw" height="100vh" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100vw" height="100vh" fill="url(#paint0_linear_2_1287)"/>
-      <rect width="100vw" height="100vh" fill="url(#paint1_radial_2_1287)"/>
+    <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="url(#paint0_linear_2_1287)"/>
+      <rect width="100%" height="100%" fill="url(#paint1_radial_2_1287)"/>
       <defs>
       <linearGradient id="paint0_linear_2_1287" x1="814.986" y1="1.16447e-10" x2="814.986" y2="1024" gradientUnits="userSpaceOnUse">
       <stop stop-color="#13161B"/>
@@ -25,7 +25,7 @@
 .main-background {
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   z-index: -1;
 }
 </style>

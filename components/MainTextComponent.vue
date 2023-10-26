@@ -33,6 +33,7 @@
   letter-spacing: 2.8px;
   text-transform: uppercase;
   margin: 12px 0;
+  max-width: 550px;
   span {
     font-weight: 300;
   }
