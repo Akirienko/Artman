@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="phone">
-        <img src="@/assets/image/about/circleBackground2.svg" alt="about artman">
+        <img src="@/assets/image/circleBackground2.svg" alt="about artman">
 
         <div class="image">
           <img src="@/assets/image/about/aboutPhone.webp" alt="about artman">
