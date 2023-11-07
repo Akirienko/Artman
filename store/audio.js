@@ -4,23 +4,34 @@ export const useAudioStore = defineStore({
   id: 'audio',
   state: () => {
     return {
-      isPlaying: true,
-      // audio: ref(null)
+      isPlaying: false,
+      currentTime: 0,
+      timer: null,
+      fullTime: 125
     }
   },
   actions: {
     playSong() {
       this.isPlaying = true;
-      audio.value.play();
+      this.startTimer();
     },
     pauseSong() {
       this.isPlaying = false;
-      audio.value.pause();
+      this.stopTimer();
     },
+    startTimer() {
+      this.timer = setInterval(() => {
+        this.currentTime++;
+        if (this.currentTime >= 125) {
+          this.currentTime=0
+        }
+      }, 1000);
+    },
+    stopTimer() {
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+    }
   },
-  // getters: {
-  //   getAudio() {
-  //     return this.audio
-  //   },
-  // },
 })
