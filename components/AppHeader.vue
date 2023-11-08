@@ -52,18 +52,16 @@ watch(menuOpen, (newValue) => {
 const activeList = ref(0);
 const offset = ref(0);
 
-onMounted(() => {
+onUpdated(() => {
     const menuItems = document.querySelectorAll('.header-wrapper .menu a');
     for (let i = 0; i < menuItems.length; i++) {
       if (menuItems[i].classList.contains('router-link-exact-active')) {
         return activeList.value = i;
-        //  offset.value = (activeList.value) * 50;
       }
     }
 })
 
 const indicatorStyle = computed(() => {
-
   offset.value = (activeList.value) * 50;
   if (typeof window !== 'undefined' && window.screen.width > 1024) {
 
@@ -77,7 +75,6 @@ const indicatorStyle = computed(() => {
 const scrollToActiveLink = (event, index) => {
   const targetSection = event.target;
   if (targetSection) {
-
     window.scrollTo({
       top: targetSection.offsetTop,
       behavior: "smooth",
@@ -209,7 +206,7 @@ const scrollToActiveLink = (event, index) => {
         </div>
         <div class="bottom">
           <div class="language">
-            <LangSwichComponent custom-class="mobile-lang" />
+            <LangSwichComponent custom-class="mobile-lang" @click="menuOpen = false"/>
           </div>
           <BuyButton />
         </div>

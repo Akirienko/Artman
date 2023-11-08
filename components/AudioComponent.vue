@@ -5,27 +5,34 @@
     loop
     ref="audio"
     id="audio"
-    style="display:none"
   >
     <source src="@/assets/sounds/mainSong.mp3" type="audio/mpeg">
-    Your browser does not support the audio tagю
+    Your browser does not support the audio tag.
   </audio>
-
-  <button @click="toggleSound" class="toggle-sound">PLAY</button>
 </template>
 
 <script setup>
+import { useAudioStore } from '@/store/audio'
+import { storeToRefs } from 'pinia'
 
-// const audioRef = ref(null);
+const store = useAudioStore();
+const audio = ref(store.audio);
 
-// const toggleSound = () => {
-//   let audio = audioRef.value;
-//   if (audio && audio.paused) {
-//     audio.play();
-//   } else if (audio) {
-//     audio.pause();
-//   }
-// }
+const { isPlaying } = storeToRefs(store)
+
+watch(isPlaying, (newValue, oldValue) => {
+  if (newValue) {
+    audio.value.play();
+  } else {
+    audio.value.pause();
+  }
+});
 
 </script>
+
+<style scoped>
+audio {
+  display: none;
+}
+</style>
 

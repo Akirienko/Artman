@@ -1,4 +1,8 @@
 <script setup>
+import { useAudioStore } from '@/store/audio'
+
+const store = useAudioStore();
+const { isPlaying, currentTime, fullTime } = storeToRefs(store)
 
 const animating = ref(false);
 
@@ -14,6 +18,12 @@ function playAnimation() {
   }, 2500);
 }
 
+function formatTime(timeInSeconds) {
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = Math.floor(timeInSeconds % 60);
+  return `${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`;
+}
+
 </script>
 
 <template>
@@ -22,7 +32,6 @@ function playAnimation() {
       <img class="" src="@/assets/image/main/mainBackgroundMobile.webp" alt="artman">
     </div>
     <div class="desk-mobile-image">
-      <!-- <img class="wave" src="@/assets/image/main/ParalaxBackWave.webp" alt="wave"> -->
       <div class="wave"></div>
 
       <img src="@/assets/image/main/Lightning.webp" class="lightning" :class="{ animate: animating }" alt="lightning">
@@ -46,6 +55,40 @@ function playAnimation() {
             </template>
           </MainTextComponent>
           <div class="song">
+            <button
+              class="play-button"
+              @click="isPlaying ? store.pauseSong() : store.playSong()"
+            >
+              <span v-if="isPlaying">
+                <img class="" src="@/assets/image/main/pauseMusic.svg" alt="pause button">
+                <img class="" src="@/assets/image/main/pauseMusicHover.svg" alt="pause button hover">
+              </span>
+              <span v-else>
+                <img class="" src="@/assets/image/main/playMusic.svg" alt="play button">
+                <img class="" src="@/assets/image/main/playMusicHover.svg" alt="play button hover">
+              </span>
+            </button>
+            <div class="song-time">
+              {{ formatTime(currentTime) }}
+              /
+              {{ formatTime(fullTime) }}
+            </div>
+            <svg class="separator" viewBox="0 0 2 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 60L1 56" stroke="#ECF7FF" stroke-width="0.5"/>
+              <path d="M1 54V6" stroke="#ECF7FF" stroke-width="0.5" stroke-dasharray="0.5 2"/>
+              <path d="M1 4L1 -4.09782e-08" stroke="#ECF7FF" stroke-width="0.5"/>
+            </svg>
+            <div class="song-equalizer">
+              <p>artman main theme</p>
+              <div class="time">
+                <span>{{ formatTime(currentTime) }}</span>
+                /
+                <span>{{ formatTime(fullTime) }}</span>
+              </div>
+              <div class="equalizer">
+                <img class="" src="@/assets/image/main/equalizer.png" alt="equalizer">
+              </div>
+            </div>
           </div>
           <div class="store">
             <NuxtLink
@@ -93,6 +136,8 @@ function playAnimation() {
 </template>
 
 <style lang="scss" scoped>
+
+
 .desk-mobile-image {
   display: none;
   @media (min-width: 1024px) {
@@ -198,8 +243,87 @@ function playAnimation() {
       height: 100%;
       padding-bottom: 60px;
       .song {
+        display: flex;
+        align-items: center;
         margin: 40px 0 56px;
         height: 90px;
+        .play-button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          span {
+            img {
+              width: 70px;
+              height: 80px;
+              transition: all .6s;
+              &:last-child {
+                opacity: 0;
+                z-index: -1;
+                position: absolute;
+                left: 0;
+              }
+            }
+          }
+          &:hover {
+            span {
+              img {
+                &:last-child {
+                  opacity: 1;
+                  z-index: 2;
+                }
+              }
+            }
+          }
+        }
+        .song-time {
+          display: none;
+        }
+        .time {
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 15px;
+          letter-spacing: 1.2px;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          span {
+            width: 40px;
+            &:last-child {
+              text-align: right;
+            }
+          }
+        }
+        .song-equalizer {
+          &>p {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 4.8px;
+            text-transform: uppercase;
+            opacity: .7;
+            margin-bottom: 5px;
+          }
+        }
+        .separator {
+          margin: 0 24px;
+          height: 60px;
+          width: 9px;
+        }
+        @media (min-width:720px) {
+          .song-time {
+            display: flex;
+          }
+          .time {
+            display: none;
+          }
+          .song-equalizer {
+            max-width: 375px;
+            &>p {
+              font-size: 14px;
+              margin-bottom: 0;
+            }
+          }
+        }
       }
       .store {
         @media (min-width:1024px) {

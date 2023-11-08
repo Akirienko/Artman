@@ -4,7 +4,7 @@
     <MainBackground />
     <AppHeader />
     <NuxtPage />
-    <!-- <AudioComponent /> -->
+    <AudioComponent />
   </div>
 </template>
 
@@ -19,8 +19,7 @@ watch(() => route.name, () => {
   isLoaded.value = false;
   setTimeout(() => {
     isLoaded.value = true;
-    console.log('setTimeout isLoaded', isLoaded.value);
-  }, 2000);
+  }, 2500);
 });
 
 onMounted(() => {
@@ -28,20 +27,3 @@ onMounted(() => {
 })
 
 </script>
-<!-- <script setup>
-const isLoaded = ref(false);
-
-import { useRoute } from 'vue-router';
-const route = useRoute();
-
-watch(() => route.name, () => {
-  isLoaded.value = false;
-});
-
-onMounted(() => {
-  isLoaded.value = true;
-  console.log('isLoaded.value', isLoaded.value);
-  console.log('onMounted');
-});
-
-</script> -->
