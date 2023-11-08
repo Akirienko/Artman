@@ -19,7 +19,6 @@ watch(() => route.name, () => {
   isLoaded.value = false;
   setTimeout(() => {
     isLoaded.value = true;
-    console.log('setTimeout isLoaded', isLoaded.value);
   }, 2500);
 });
 

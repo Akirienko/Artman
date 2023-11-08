@@ -20,10 +20,7 @@ const audio = ref(store.audio);
 
 const { isPlaying } = storeToRefs(store)
 
-console.log('audio curr time', audio.duration);
-
 watch(isPlaying, (newValue, oldValue) => {
-  console.log(`playing is: ${newValue}`);
   if (newValue) {
     audio.value.play();
   } else {

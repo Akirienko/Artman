@@ -108,6 +108,7 @@ const { t } = useI18n();
 }
 .media {
   padding: 20px 0;
+  min-height: 100vh;
   .media-bg {
     display: none;
   }
