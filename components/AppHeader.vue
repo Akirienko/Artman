@@ -80,7 +80,6 @@ const scrollToActiveLink = (event, index) => {
       behavior: "smooth",
     });
     activeList.value = index;
-    console.log('targetSection TRUE', activeList.value);
   }
 };
 
