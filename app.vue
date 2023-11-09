@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Preloader v-if="!isLoaded" />
-    <MainBackground />
+    <AppPreloader v-if="!isLoaded" />
+    <AppBackground />
     <AppHeader />
     <NuxtPage />
     <AudioComponent />
