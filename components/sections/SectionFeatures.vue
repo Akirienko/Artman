@@ -7,7 +7,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/parallax';
 const { t, locale } = useI18n();
 
-
 const sliderContentItem = [
   {
     title: "features_title_1",
@@ -53,7 +52,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
     </div>
     <swiper
       :slidesPerView="1"
-      :mousewheel="true"
+      :mousewheel="false"
       :effectFade="true"
       :modules="modules"
       :pagination="{
@@ -99,7 +98,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
     <swiper
       :direction="'vertical'"
       :slidesPerView="1"
-      :mousewheel="true"
+      :mousewheel="false"
       :parallax= "true"
       :effect="'creative'"
       :speed="1000"
@@ -111,7 +110,9 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
           translate: [0, '50%', 0],
         },
       }"
-
+      :pagination="{
+        clickable: true,
+      }"
       :modules="modules"
       class="desktopSlider container"
     >

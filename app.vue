@@ -4,7 +4,7 @@
     <AppBackground />
     <AppHeader />
     <NuxtPage />
-    <AudioComponent />
+    <!-- <AudioComponent /> -->
   </div>
 </template>
 
@@ -12,15 +12,15 @@
 <script setup>
 const isLoaded = ref(false);
 
-import { useRoute } from 'vue-router';
-const route = useRoute();
+// import { useRoute } from 'vue-router';
+// const route = useRoute();
 
-watch(() => route.name, () => {
-  isLoaded.value = false;
-  setTimeout(() => {
-    isLoaded.value = true;
-  }, 2500);
-});
+// watch(() => route.name, () => {
+//   isLoaded.value = false;
+//   setTimeout(() => {
+//     isLoaded.value = true;
+//   }, 2500);
+// });
 
 onMounted(() => {
   isLoaded.value = true;

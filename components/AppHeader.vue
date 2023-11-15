@@ -1,43 +1,72 @@
 <script setup>
+import { useActiveSlide } from '@/store/activeSlide'
+// import { storeToRefs } from 'pinia'
+
 const { t, locale } = useI18n();
 const localPath = useLocalePath();
+const store = useActiveSlide();
+
+
+// const slide = ref(store.slide);
+
+const { activeSlideIndex } = storeToRefs(store);
+
+// const menuItems = [
+//   {
+//     key: 'menu-home',
+//     link: 'sectionWelcome'
+//   },
+//   {
+//     key: 'menu-about',
+//     link: 'sectionAbout'
+//   },
+//   {
+//     key: 'menu-features',
+//     link: 'sectionFeatures'
+//   },
+//   {
+//     key: 'menu-media',
+//     link: 'sectionMedia'
+//   }
+// ];
+
+// const menu = ref([]);
+
+// onMounted(() => {
+//   // Ініціалізуємо меню при створенні компонента
+//   menu.value = menuItems.map(item => ({
+//     title: t(item.key),
+//     // link: localPath(item.link, locale.value)
+//     link: item.link
+//   }));
+// });
+
+// watch(locale, (newLocale) => {
+//   // Оновлюємо меню після зміни мови
+//   menu.value = menuItems.map(item => ({
+//     title: t(item.key),
+//     link: localPath(item.link, newLocale)
+//   }));
+// });
 
 const menuItems = [
   {
-    key: 'menu-home',
-    link: '/'
+    title: 'home',
+    link: 'sectionWelcome'
   },
   {
-    key: 'menu-about',
-    link: '/about'
+    title: 'about',
+    link: 'sectionAbout'
   },
   {
-    key: 'menu-features',
-    link: '/features'
+    title: 'features',
+    link: 'sectionFeatures'
   },
   {
-    key: 'menu-media',
-    link: '/media'
+    title: 'media',
+    link: 'sectionMedia'
   }
 ];
-
-const menu = ref([]);
-
-onMounted(() => {
-  // Ініціалізуємо меню при створенні компонента
-  menu.value = menuItems.map(item => ({
-    title: t(item.key),
-    link: localPath(item.link, locale.value)
-  }));
-});
-
-watch(locale, (newLocale) => {
-  // Оновлюємо меню після зміни мови
-  menu.value = menuItems.map(item => ({
-    title: t(item.key),
-    link: localPath(item.link, newLocale)
-  }));
-});
 
 const menuOpen = ref(false);
 
@@ -49,8 +78,16 @@ watch(menuOpen, (newValue) => {
   }
 });
 
-const activeList = ref(0);
-const offset = ref(0);
+const activeList = ref();
+
+const indicatorStyle = ref({
+  transform: 'translateX(0%)',
+  width: '345px'
+});
+
+watch(activeSlideIndex, (newValue) => {
+  activeList.value = newValue
+});
 
 onUpdated(() => {
     const menuItems = document.querySelectorAll('.header-wrapper .menu a');
@@ -61,19 +98,9 @@ onUpdated(() => {
     }
 })
 
-const indicatorStyle = computed(() => {
-  offset.value = (activeList.value) * 50;
-  if (typeof window !== 'undefined' && window.screen.width > 1024) {
-
-    return {
-      transform: `translateX(${offset.value}%)`,
-      width: "345px",
-    };
-  }
-});
-
 const scrollToActiveLink = (event, index) => {
-  const targetSection = event.target;
+  const targetSection = index;
+  console.log('scrollToActiveLinkscrollToActiveLink', index);
   if (targetSection) {
     window.scrollTo({
       top: targetSection.offsetTop,
@@ -81,7 +108,26 @@ const scrollToActiveLink = (event, index) => {
     });
     activeList.value = index;
   }
+  if(index === 0) {
+    indicatorStyle.value = {
+      transform: 'translateX(0%)',
+      width: '345px'
+    };
+  }
 };
+
+
+watch(activeList, (newValue) => {
+  if (newValue !== null) {
+    const offset = newValue * 50;
+    if (typeof window !== 'undefined' && window.screen.width > 1024) {
+      indicatorStyle.value = {
+        transform: `translateX(${offset}%)`,
+        width: '345px'
+      };
+    }
+  }
+});
 
 </script>
 
@@ -117,15 +163,12 @@ const scrollToActiveLink = (event, index) => {
       <div class="menu">
         <div
           class="menu-item-wrap"
-          v-for="(item, index) in menu"
+          v-for="(item, index) in menuItems"
           :key="item.title"
         >
-          <NuxtLink
-            :to="localPath(item.link)"
-            @click="scrollToActiveLink($event, index)"
-          >
+          <span @click="store.setActiveMenuItem(item.link), scrollToActiveLink($event, index)">
             {{item.title}}
-          </NuxtLink>
+          </span>
         </div>
 
         <img class="menu-line" :style="indicatorStyle" src="@/assets/image/headerLine.svg" alt="header line">
@@ -193,15 +236,22 @@ const scrollToActiveLink = (event, index) => {
           </div>
         </div>
         <div class="menu">
-          <NuxtLink
-            v-for="item in menu"
+          <!-- <NuxtLink
+            v-for="item in menuItems"
             :key="item.title"
             :to="item.link"
             @click="menuOpen = !menuOpen"
           >
             {{ item.title }}
             <img class="" src="@/assets/image/headerLine.svg" alt="header line">
-          </NuxtLink>
+          </NuxtLink> -->
+          <span
+            v-for="item in menuItems"
+            :key="item.title"
+            @click="store.setActiveMenuItem(item.link), scrollToActiveLink($event, item.link)"
+          >
+            {{item.title}}
+          </span>
         </div>
         <div class="bottom">
           <div class="language">
@@ -215,6 +265,13 @@ const scrollToActiveLink = (event, index) => {
 </template>
 
 <style lang="scss" scoped>
+header {
+  @media (min-width: 1024px) {
+    position: fixed;
+    z-index: 111;
+    width: 100vw;
+  }
+}
 .desktop-lang {
   display: none;
   @media (min-width: 1024px) {
@@ -248,7 +305,7 @@ const scrollToActiveLink = (event, index) => {
       justify-content: center;
       margin: 0;
     }
-    a {
+    a, span {
       display: none;
       margin-bottom: 0;
       font-size: 14px;
@@ -303,7 +360,7 @@ const scrollToActiveLink = (event, index) => {
 
   @media (min-width:1024px) {
     .menu {
-      a {
+      a, span {
         display: block;
       }
     }
@@ -320,7 +377,7 @@ const scrollToActiveLink = (event, index) => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  a {
+  a, span {
     color: var(--light-graphit, #7B8699);
     font-size: 28px;
     font-weight: 600;
@@ -369,7 +426,7 @@ const scrollToActiveLink = (event, index) => {
   }
   @media (min-width:1024px) {
     flex-direction: row;
-    a {
+    a, span {
       display: block;
       height: 100%;
       margin: 0 50px;
