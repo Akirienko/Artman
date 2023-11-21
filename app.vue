@@ -4,7 +4,7 @@
     <AppBackground />
     <AppHeader />
     <NuxtPage />
-    <!-- <AudioComponent /> -->
+    <AudioComponent />
   </div>
 </template>
 
