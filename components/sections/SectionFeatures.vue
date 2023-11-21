@@ -80,7 +80,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
       <swiper-slide v-for="slide in sliderContent" data-swiper-parallax-duration="4000"
         data-swiper-parallax-opacity="0.5">
         <div class="slide-img">
-          <img :src="`/assets/image/features/${slide.image}.png`" :alt="slide.title">
+          <img :src="`@/assets/image/features/${slide.image}.png`" :alt="slide.title">
         </div>
         <div class="slide-text">
           <h3>
