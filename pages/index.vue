@@ -9,12 +9,17 @@ import { storeToRefs } from 'pinia'
 
 const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
 const store = useActiveSlide();
-const { activeMenuItem } = storeToRefs(store)
+const { activeMenuItem, activeSlideIndex } = storeToRefs(store)
 
 const onSwiper = (swiper) => {
   watch(activeMenuItem, (newValue, oldValue) => {
     if (newValue) {
       changeActiveSlide(activeMenuItem.value);
+    }
+  });
+  watch(activeSlideIndex, (newValue, oldValue) => {
+    if (newValue===0) {
+      swiper.slideTo(0);
     }
   });
 

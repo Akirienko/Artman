@@ -107,8 +107,6 @@ function setActiveMenuItem(menuItems, activeIndex) {
 }
 
 const scrollToActiveLink = (event, index) => {
-  console.log('scrollToActiveLink', index);
-
   const targetSection = index;
   if (targetSection) {
     window.scrollTo({
@@ -122,14 +120,13 @@ const scrollToActiveLink = (event, index) => {
       transform: 'translateX(0%)',
       width: '345px'
     };
-    activeList.value = index;
+    store.setActiveSlideIndex(0);
   }
 };
 
 
 watch(activeList, (newValue) => {
   if (newValue !== null && newValue !== 3 && newValue !== 4) {
-    console.log('newValue', newValue);
     const offset = newValue * 50;
     if (typeof window !== 'undefined' && window.screen.width > 1020) {
       indicatorStyle.value = {
