@@ -122,6 +122,7 @@ const scrollToActiveLink = (event, index) => {
       transform: 'translateX(0%)',
       width: '345px'
     };
+    activeList.value = index;
   }
 };
 

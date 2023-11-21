@@ -8,7 +8,7 @@ const isUARoute = ref(false);
 watch(() => route.path, (newPath) => {
   // isUARoute = newPath === '/ua';
   if (newPath === '/ua') {
-    console.log('UA');
+    // console.log('UA');
     isUARoute.value = true
   } else {
     isUARoute.value = false

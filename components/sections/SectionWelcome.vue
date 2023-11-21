@@ -271,7 +271,7 @@ function formatTime(timeInSeconds) {
           cursor: pointer;
           span {
             img {
-              width: 70px;
+              width: 80px;
               height: 80px;
               transition: all .6s;
               &:last-child {
@@ -298,7 +298,6 @@ function formatTime(timeInSeconds) {
         }
         .time {
           font-size: 12px;
-          font-weight: 600;
           line-height: 15px;
           letter-spacing: 1.2px;
           text-transform: uppercase;
@@ -332,7 +331,6 @@ function formatTime(timeInSeconds) {
             display: flex;
             letter-spacing: 1.7px;
             font-size: 17px;
-            font-weight: 600;
             line-height: 15px;
           }
           .time {
@@ -403,8 +401,10 @@ function formatTime(timeInSeconds) {
         }
       }
       @media (min-width:1440px) {
-        right: 0;
-
+        right: 40px;
+      }
+      @media (min-width:1680px) {
+        left: 20px;
         .phone {
           .phone-circle {
             width: 488px;
@@ -416,10 +416,8 @@ function formatTime(timeInSeconds) {
           }
         }
       }
-      @media (min-width:1680px) {
-        left: 20px;
-      }
       @media (min-width:1920px) {
+        right: 0;
         left: 60px;
       }
     }

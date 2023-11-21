@@ -1,5 +1,17 @@
 <script setup>
+import { useRoute } from 'vue-router';
+
 const { t } = useI18n();
+const route = useRoute();
+const isUARoute = ref(false);
+
+watchEffect(() => {
+  if (route.path === '/ua') {
+    isUARoute.value = true;
+  } else {
+    isUARoute.value = false;
+  }
+});
 
 </script>
 
@@ -68,7 +80,7 @@ const { t } = useI18n();
             <img src="@/assets/image/media/googlePlayHover.svg" alt="appstore">
           </NuxtLink>
         </div>
-        <div class="contacts">
+        <div :class="`contacts ${isUARoute ? 'ua' : ''}`">
           <NuxtLink to="#">
             <span>{{ t("contact_us") }}</span>
             <img src="@/assets/image/media/gmail.svg" alt="appstore">
@@ -330,6 +342,22 @@ const { t } = useI18n();
           display: flex;
           justify-content: space-between;
           width: 100%;
+          @media (min-width: 1024px) {
+            &.ua {
+              a {
+                &:first-child {
+                  span {
+                    margin-right: 20px;
+                  }
+                }
+                &:last-child {
+                  span {
+                    margin-left: 20px;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

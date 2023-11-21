@@ -16,6 +16,9 @@
           </template>
           <template v-slot:title >
             {{ $t("about_title") }}
+            <span class="text-base">{{ $t("home_title_bold") }}</span>
+            {{ $t("about_title_2") }}
+            <span class="text-base">{{ $t("home_title_bold_2") }}</span>
           </template>
           <template v-slot:subtitle >
             {{ $t("about_subtitle") }}
@@ -128,7 +131,7 @@
       }
 
     }
-    @media (min-width:1440px) {
+    @media (min-width:1640px) {
       .phone {
         &>img {
         width: 488px;
