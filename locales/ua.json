@@ -5,7 +5,11 @@
   "menu-media": "медіа",
 
   "home_undertitle": "ГРА ВІД ROLANDO AGUILLON",
-  "home_title": "СИМУЛЯТОР КІНОПРОДЮСЕРА У СВІТІ КІБЕРПАНК ГОЛЛІВУДУ 2056",
+  "home_title_bold": "СИМУЛЯТОР КІНОПРОДЮСЕРА",
+  "home_title": "У СВІТІ",
+  "home_title_bold_2": "КІБЕРПАНК ГОЛЛІВУДУ",
+  "home_title_2": "2056",
+  "home_title_bold_3": "",
   "home_subtitle": "Пориньте у творчий процес створення унікальних фільмів у світі недалекого майбутнього, щоб стати справжньою легендою!",
 
   "about_undertitle": "sci-fi esthetization",
@@ -27,7 +31,7 @@
   "download_wallpaper": "завантажити шпалериr",
   "listen_youtube": "слухати саундтрек на youtube",
   "gameplay_trailer": "трейлер ігрового процесу",
-  
+
   "contact_us": "зв'яжіться з нами",
   "app_store": "app store",
   "follow_us": "Слідкуйте за нами",

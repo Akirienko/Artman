@@ -16,7 +16,6 @@ body {
   padding: 0;
   font-size: 17px;
   color: var(--marble, #ECF7FF);
-  // font-family: "FramerSans", sans-serif;
   &.no-scroll {
     height: 100vh;
     overflow: hidden;
@@ -29,12 +28,50 @@ body {
   position: absolute;
   right: 0;
   img {
-    // position: absolute;
-    // right: 0;
     object-position: right;
   }
   @media (min-width: 1024px) {
     display: none;
+  }
+}
+
+@media (min-width:1024px) {
+  .left-bar-animation {
+    transition: 3s;
+    transform: translateX(200%);
+    opacity: 0;
+  }
+
+  .right-bar-animation {
+    transition: 3s;
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+
+  .swiper-slide-active {
+    .left-bar-animation, .right-bar-animation {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    .main-content__left.left-animation {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .main-content__right.right-animation {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+.circles {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  @media (min-width:1024px) {
+    display: block;
   }
 }
 
@@ -75,6 +112,7 @@ audio:not([controls]) {
 
 section {
   overflow: hidden;
+  height: 100vh;
 }
 
 .container {

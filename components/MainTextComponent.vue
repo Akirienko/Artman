@@ -1,5 +1,14 @@
+<script setup>
+const props = defineProps({
+  image: String
+})
+</script>
+
 <template>
   <div>
+    <div class="a-symbol">
+      <slot name="image"></slot>
+    </div>
     <span class="undertitle">
       <slot name="undertitle"></slot>
     </span>
@@ -12,17 +21,21 @@
   </div>
 </template>
 
-<script setup>
-
-</script>
-
 <style lang="scss" scoped>
+
+.a-symbol {
+  position: absolute;
+  width: 220px;
+  top: -70px;
+  left: -100px;
+}
 .undertitle {
   font-size: 12px;
   font-weight: 600;
   line-height: 140%;
   letter-spacing: 4.8px;
   text-transform: uppercase;
+  opacity: .7;
   @media (min-width: 760px) {
     font-size: 14px;
   }

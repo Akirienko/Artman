@@ -1,5 +1,23 @@
+<script setup>
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const isUARoute = ref(false);
+
+watch(() => route.path, (newPath) => {
+  // isUARoute = newPath === '/ua';
+  if (newPath === '/ua') {
+    console.log('UA');
+    isUARoute.value = true
+  } else {
+    isUARoute.value = false
+  }
+});
+</script>
+
 <template>
-  <NuxtLink href="#" class="buy-btn">
+  <div :class="`buy-btn ${isUARoute ? 'ua' : ''}`">
     <div class="buy-btn__content">
       <svg viewBox="0 0 20 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6V9L20 15L14.1497 6.80964C12.8692 6.28764 11.4682 6 10 6ZM10 5C11.0925 5 12.1509 5.146 13.1568 5.41956L10 1V5Z" fill="#292E37"/>
@@ -27,7 +45,7 @@
         </linearGradient>
       </defs>
     </svg>
-  </NuxtLink>
+  </div>
 </template>
 
 
@@ -35,7 +53,16 @@
 .buy-btn {
   width: 148px;
   height: 60px;
-  display: block;
+  cursor: pointer;
+  &.ua {
+    .buy-btn__content {
+      svg {
+        &:nth-child(2) {
+        left: 47px;
+      }
+      }
+    }
+  }
   &__content {
     display: flex;
     justify-content: flex-end;
