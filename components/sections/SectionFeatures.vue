@@ -80,7 +80,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
       <swiper-slide v-for="slide in sliderContent" data-swiper-parallax-duration="4000"
         data-swiper-parallax-opacity="0.5">
         <div class="slide-img">
-          <img :src="`@/assets/image/features/${slide.image}.png`" :alt="slide.title">
+          <img :src="`/${slide.image}.png`" :alt="slide.title">
         </div>
         <div class="slide-text">
           <h3>
@@ -98,7 +98,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
     <div class="features-wrapper container">
       <div class="left right-bar-animation">
         <div class="slide-img">
-          <img src="@/assets/image/features/features1.png" alt="features card">
+          <img src="/features1.png" alt="features card">
         </div>
         <div class="slide-text">
           <h3>
@@ -112,7 +112,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
       </div>
       <div class="right left-bar-animation">
         <div class="slide-img">
-          <img src="@/assets/image/features/features2.png" alt="features card">
+          <img src="/features2.png" alt="features card">
         </div>
         <div class="slide-text">
           <h3>
