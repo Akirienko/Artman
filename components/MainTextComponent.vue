@@ -62,8 +62,7 @@ const props = defineProps({
   max-width: 343px;
   @media (min-width: 760px) {
     font-size: 24px;
-  }
-  @media (min-width: 760px) {
+    letter-spacing: 2.4px;
     max-width: 564px;
   }
 }

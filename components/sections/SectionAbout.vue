@@ -16,9 +16,11 @@
           </template>
           <template v-slot:title >
             {{ $t("about_title") }}
-            <span class="text-base">{{ $t("home_title_bold") }}</span>
+            <span class="text-base">{{ $t("about_title_bold") }}</span> <br>
+            <span class="text-base">{{ $t("about_title_bold_2") }}</span>
+            <span class="text-base">{{ $t("about_title_bold_3") }}</span><br>
             {{ $t("about_title_2") }}
-            <span class="text-base">{{ $t("home_title_bold_2") }}</span>
+            <span class="text-base">{{ $t("about_title_bold_4") }}</span>
           </template>
           <template v-slot:subtitle >
             {{ $t("about_subtitle") }}
