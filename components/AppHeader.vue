@@ -470,6 +470,7 @@ header {
   transform: translateY(-150%);
   z-index: 100;
   top: 0;
+  overflow-y: scroll;
   &.active {
     opacity: 1;
     transform: translateY(0);
