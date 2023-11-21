@@ -10,20 +10,14 @@
 
 
 <script setup>
-const isLoaded = ref(false);
+import { useLoaded } from '@/store/preloader'
+import { storeToRefs } from 'pinia'
 
-// import { useRoute } from 'vue-router';
-// const route = useRoute();
-
-// watch(() => route.name, () => {
-//   isLoaded.value = false;
-//   setTimeout(() => {
-//     isLoaded.value = true;
-//   }, 2500);
-// });
+const store = useLoaded();
+const { isLoaded } = storeToRefs(store)
 
 onMounted(() => {
-  isLoaded.value = true;
+  store.loadedEvent();
 })
 
 </script>

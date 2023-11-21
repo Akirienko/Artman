@@ -1,10 +1,17 @@
 <script setup>
 import { useAudioStore } from '@/store/audio'
+import { useLoaded } from '@/store/preloader'
+import { storeToRefs } from 'pinia'
+
+const storeLoad = useLoaded();
+const { isLoaded } = storeToRefs(storeLoad)
 
 const store = useAudioStore();
 const { isPlaying, currentTime, fullTime } = storeToRefs(store)
 
+
 const animating = ref(false);
+const loadingPage = ref(false)
 
 onMounted(() => {
   playAnimation();
@@ -37,18 +44,26 @@ function formatTime(timeInSeconds) {
       <img src="@/assets/image/main/Lightning.webp" class="lightning" :class="{ animate: animating }" alt="lightning">
 
       <img class="artman-desk" src="@/assets/image/main/mainBackgroundDesk.webp" alt="artman">
+
+
     </div>
+    <img class="circles" src="@/assets/image/circlesMain.svg" alt="circles">
+
     <div class="main-content container">
-        <div class="main-content__left">
+        <div :class="`main-content__left ${isLoaded ? 'left-animation' : ''}`">
           <MainTextComponent>
+            <template v-slot:image>
+              <img class="a-symbol" src="@/assets/image/aSymbol.svg" alt="a">
+            </template>
             <template v-slot:undertitle>
               {{ $t("home_undertitle") }}
             </template>
             <template v-slot:title >
-              <!-- CINEMA <span class="text-base">PRODUCER </span> <br>
-              <span class="text-base">SIMULATOR</span> IN WORLD OF <br>
-              CYBERPUNK <span class="text-base">HOLLYWOOD</span> 2056 -->
-              {{ $t("home_title") }}
+              {{ $t("home_title_bold") }} <br>
+              <span class="text-base">{{ $t("home_title") }}</span>
+              {{ $t("home_title_bold_2") }}
+              <span class="text-base">{{ $t("home_title_2") }}</span>
+              {{ $t("home_title_bold_3") }}
             </template>
             <template v-slot:subtitle >
               {{ $t("home_subtitle") }}
@@ -81,9 +96,9 @@ function formatTime(timeInSeconds) {
             <div class="song-equalizer">
               <p>artman main theme</p>
               <div class="time">
-                <span>{{ formatTime(currentTime) }}</span>
+                <span>{{ formatTime(currentTime) }} </span>
                 /
-                <span>{{ formatTime(fullTime) }}</span>
+                <span> {{ formatTime(fullTime) }}</span>
               </div>
               <div class="equalizer">
                 <img class="" src="@/assets/image/main/equalizer.png" alt="equalizer">
@@ -107,7 +122,7 @@ function formatTime(timeInSeconds) {
             </NuxtLink>
           </div>
         </div>
-        <div class="main-content__right">
+        <div :class="`main-content__right ${isLoaded ? 'right-animation' : ''}`">
           <div class="phone">
             <img src="@/assets/image/circleBackground2.svg" class="phone-circle" :class="{ animate: animating }" alt="about artman">
             <div class="image">
@@ -167,6 +182,7 @@ function formatTime(timeInSeconds) {
       right: 0;
       animation: disappear 1s ease-in-out forwards;
     }
+
   }
 }
 
@@ -230,7 +246,10 @@ function formatTime(timeInSeconds) {
   }
 }
 .main {
-  height: calc(100vh - 60px);
+  @media (min-width:1024px) {
+    height: 100vh;
+  }
+
   &-content {
     display: flex;
     align-items: center;
@@ -239,9 +258,8 @@ function formatTime(timeInSeconds) {
     &__left {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
       height: 100%;
-      padding-bottom: 60px;
       .song {
         display: flex;
         align-items: center;
@@ -312,6 +330,10 @@ function formatTime(timeInSeconds) {
         @media (min-width:720px) {
           .song-time {
             display: flex;
+            letter-spacing: 1.7px;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 15px;
           }
           .time {
             display: none;
@@ -332,16 +354,26 @@ function formatTime(timeInSeconds) {
       }
       @media (min-width:1024px) {
         justify-content: center;
+        transition: 3s;
+        transform: translateX(-150%);
+        opacity: 0;
       }
     }
     &__right {
       display: none;
       @media (min-width:1024px) {
         display: block;
+        margin-bottom: 20px;
+        transition: 3s;
+        transform: translateX(150%);
+        opacity: 0;
         .phone {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           .phone-circle {
-            width: 488px;
-            height: 488px;
+            width: 400px;
+            height: 400px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -353,15 +385,47 @@ function formatTime(timeInSeconds) {
             }
           }
           .image {
-            width: 326px;
-            height: 672px;
+            width: 230px;
             margin-bottom: 40px;
           }
         }
       }
+      @media (min-width:1280px) {
+        right: 30px;
+        .phone {
+          .phone-circle {
+            width: 430px;
+            height: 430px;
+          }
+          .image {
+            width: 260px;
+          }
+        }
+      }
+      @media (min-width:1440px) {
+        right: 0;
+
+        .phone {
+          .phone-circle {
+            width: 488px;
+            height: 488px;
+          }
+          .image {
+            width: 326px;
+            height: 672px;
+          }
+        }
+      }
+      @media (min-width:1680px) {
+        left: 20px;
+      }
+      @media (min-width:1920px) {
+        left: 60px;
+      }
     }
     @media (min-width:1024px) {
       justify-content: space-around;
+      margin-top: 60px;
     }
   }
 }

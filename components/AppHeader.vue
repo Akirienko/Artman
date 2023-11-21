@@ -1,72 +1,57 @@
 <script setup>
 import { useActiveSlide } from '@/store/activeSlide'
-// import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia'
 
 const { t, locale } = useI18n();
 const localPath = useLocalePath();
 const store = useActiveSlide();
-
-
-// const slide = ref(store.slide);
-
 const { activeSlideIndex } = storeToRefs(store);
-
-// const menuItems = [
-//   {
-//     key: 'menu-home',
-//     link: 'sectionWelcome'
-//   },
-//   {
-//     key: 'menu-about',
-//     link: 'sectionAbout'
-//   },
-//   {
-//     key: 'menu-features',
-//     link: 'sectionFeatures'
-//   },
-//   {
-//     key: 'menu-media',
-//     link: 'sectionMedia'
-//   }
-// ];
-
-// const menu = ref([]);
-
-// onMounted(() => {
-//   // Ініціалізуємо меню при створенні компонента
-//   menu.value = menuItems.map(item => ({
-//     title: t(item.key),
-//     // link: localPath(item.link, locale.value)
-//     link: item.link
-//   }));
-// });
-
-// watch(locale, (newLocale) => {
-//   // Оновлюємо меню після зміни мови
-//   menu.value = menuItems.map(item => ({
-//     title: t(item.key),
-//     link: localPath(item.link, newLocale)
-//   }));
-// });
-
 const menuItems = [
   {
-    title: 'home',
+    key: 'menu-home',
     link: 'sectionWelcome'
   },
   {
-    title: 'about',
+    key: 'menu-about',
     link: 'sectionAbout'
   },
   {
-    title: 'features',
+    key: 'menu-features',
     link: 'sectionFeatures'
   },
   {
-    title: 'media',
+    key: 'menu-media',
     link: 'sectionMedia'
   }
 ];
+const menu = ref([]);
+
+onMounted(() => {
+  // Ініціалізуємо меню при створенні компонента
+  menu.value = menuItems.map(item => ({
+    title: t(item.key),
+    // link: localPath(item.link, locale.value)
+    link: item.link
+  }));
+
+});
+
+watch(locale, (newLocale) => {
+  // Оновлюємо меню після зміни мови
+  menu.value = menuItems.map(item => ({
+    title: t(item.key),
+    // link: localPath(item.link, newLocale)
+    link: item.link
+  }));
+  nextTick(() => {
+    const menuItemsMobile = document.querySelectorAll('.mobile-wrapper .menu span');
+    const menuItemsDesktop = document.querySelectorAll('.desktop-menu .menu-item-wrap span');
+
+    activeList.value = 0;
+    setActiveMenuItem(menuItemsMobile, 0);
+    setActiveMenuItem(menuItemsDesktop, 0);
+  });
+});
 
 const menuOpen = ref(false);
 
@@ -86,21 +71,45 @@ const indicatorStyle = ref({
 });
 
 watch(activeSlideIndex, (newValue) => {
+  const menuItemsMobile = document.querySelectorAll('.mobile-wrapper .menu span');
+  const menuItemsDesktop = document.querySelectorAll('.desktop-menu .menu-item-wrap span');
+
   activeList.value = newValue
+  setActiveMenuItem(menuItemsMobile, newValue);
+  setActiveMenuItem(menuItemsDesktop, newValue);
 });
 
-onUpdated(() => {
-    const menuItems = document.querySelectorAll('.header-wrapper .menu a');
-    for (let i = 0; i < menuItems.length; i++) {
-      if (menuItems[i].classList.contains('router-link-exact-active')) {
-        return activeList.value = i;
-      }
+onMounted(() => {
+  nextTick(() => {
+    const menuItemsMobile = document.querySelectorAll('.mobile-wrapper .menu span');
+    const menuItemsDesktop = document.querySelectorAll('.desktop-menu .menu-item-wrap span');
+
+    setActiveMenuItem(menuItemsMobile, 0);
+    setActiveMenuItem(menuItemsDesktop, 0);
+  });
+});
+
+function setActiveMenuItem(menuItems, activeIndex) {
+  if (activeIndex === 3) {
+    activeIndex = 2
+  }
+  if (activeIndex === 4) {
+    activeIndex = 3
+  }
+
+  menuItems.forEach((menuItem, index) => {
+    if (index === activeIndex) {
+      menuItem.classList.add('router-link-active');
+    } else {
+      menuItem.classList.remove('router-link-active');
     }
-})
+  });
+}
 
 const scrollToActiveLink = (event, index) => {
+  console.log('scrollToActiveLink', index);
+
   const targetSection = index;
-  console.log('scrollToActiveLinkscrollToActiveLink', index);
   if (targetSection) {
     window.scrollTo({
       top: targetSection.offsetTop,
@@ -118,14 +127,27 @@ const scrollToActiveLink = (event, index) => {
 
 
 watch(activeList, (newValue) => {
-  if (newValue !== null) {
+  if (newValue !== null && newValue !== 3 && newValue !== 4) {
+    console.log('newValue', newValue);
     const offset = newValue * 50;
-    if (typeof window !== 'undefined' && window.screen.width > 1024) {
+    if (typeof window !== 'undefined' && window.screen.width > 1020) {
       indicatorStyle.value = {
         transform: `translateX(${offset}%)`,
         width: '345px'
       };
     }
+  }
+  if (newValue === 4) {
+    indicatorStyle.value = {
+      transform: `translateX(150%)`,
+      width: '345px'
+    };
+  }
+  if (newValue === 3 && window.screen.width > 1020) {
+    indicatorStyle.value = {
+      transform: `translateX(100%)`,
+      width: '345px'
+    };
   }
 });
 
@@ -160,10 +182,10 @@ watch(activeList, (newValue) => {
         </NuxtLink>
       </div>
 
-      <div class="menu">
+      <div class="menu desktop-menu">
         <div
           class="menu-item-wrap"
-          v-for="(item, index) in menuItems"
+          v-for="(item, index) in menu"
           :key="item.title"
         >
           <span @click="store.setActiveMenuItem(item.link), scrollToActiveLink($event, index)">
@@ -196,7 +218,7 @@ watch(activeList, (newValue) => {
           </svg>
         </button>
 
-        <BuyButton />
+        <BuyButton @click="store.setActiveMenuItem('sectionMedia'), scrollToActiveLink($event, 4)" />
       </div>
       <!-- Mobile Menu -->
       <div
@@ -236,19 +258,10 @@ watch(activeList, (newValue) => {
           </div>
         </div>
         <div class="menu">
-          <!-- <NuxtLink
-            v-for="item in menuItems"
-            :key="item.title"
-            :to="item.link"
-            @click="menuOpen = !menuOpen"
-          >
-            {{ item.title }}
-            <img class="" src="@/assets/image/headerLine.svg" alt="header line">
-          </NuxtLink> -->
           <span
-            v-for="item in menuItems"
+            v-for="item in menu"
             :key="item.title"
-            @click="store.setActiveMenuItem(item.link), scrollToActiveLink($event, item.link)"
+            @click="store.setActiveMenuItem(item.link), scrollToActiveLink($event, item.link), menuOpen = !menuOpen"
           >
             {{item.title}}
           </span>
@@ -257,7 +270,7 @@ watch(activeList, (newValue) => {
           <div class="language">
             <LangSwichComponent custom-class="mobile-lang" @click="menuOpen = false"/>
           </div>
-          <BuyButton />
+          <BuyButton @click="store.setActiveMenuItem('sectionMedia'), scrollToActiveLink($event, 4)" />
         </div>
       </div>
     </div>
@@ -266,11 +279,10 @@ watch(activeList, (newValue) => {
 
 <style lang="scss" scoped>
 header {
-  @media (min-width: 1024px) {
+  width: 100vw;
     position: fixed;
-    z-index: 111;
-    width: 100vw;
-  }
+    top: 0;
+    z-index: 10;
 }
 .desktop-lang {
   display: none;
@@ -291,10 +303,14 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 0.1px solid rgba(255,255,255, .4);
   .logo {
     margin-left: 24px;
     @media (min-width:1024px) {
       width: 148px;
+      a {
+        top: 2px;
+      }
     }
   }
   .menu {
@@ -313,6 +329,7 @@ header {
       letter-spacing: 2.8px;
       z-index: 11;
       margin: 0;
+      cursor: pointer;
       img {
         height: 32px;
       }
@@ -327,7 +344,7 @@ header {
       position: absolute;
       z-index: 10;
       width: 345px;
-      transition: ease-out .7s;
+      transition: ease-out 1.5s;
       height: 25px;
       bottom: -20px;
       @media (min-width:1024px) {
@@ -464,7 +481,7 @@ header {
     padding: 10px 16px;
   }
   .menu {
-    a {
+    a, span {
     color: var(--light-graphit, #7B8699);
     font-size: 28px;
     font-weight: 600;

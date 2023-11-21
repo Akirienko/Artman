@@ -45,10 +45,10 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
 </script>
 
 <template>
-  <!-- <section class="feater" :style="`height:${windowInnerHeight}px`"> -->
   <section class="feater">
     <div class="feater-background">
       <img src="@/assets/image/features/backgroundFeatures.webp" alt="features background">
+      <img class="circles" src="@/assets/image/circlesFeatures.svg" alt="circles">
     </div>
     <swiper
       :slidesPerView="1"
@@ -95,95 +95,43 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
     </swiper>
 
     <!-- Desktop -->
-    <swiper
-      :direction="'vertical'"
-      :slidesPerView="1"
-      :mousewheel="false"
-      :parallax= "true"
-      :effect="'creative'"
-      :speed="1000"
-      :creativeEffect="{
-        prev: {
-          translate: [0, '-50%', 0],
-        },
-        next: {
-          translate: [0, '50%', 0],
-        },
-      }"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="modules"
-      class="desktopSlider container"
-    >
-      <swiper-slide>
-        <div class="left">
-          <div class="slide-img">
-            <img src="@/assets/image/features/features1.png" alt="features card">
-          </div>
-          <div class="slide-text">
-            <h3>
-              {{ t("features_title_1") }}
-            </h3>
-            <img src="@/assets/image/featuresSeparator.svg" alt="">
-            <p>
-              {{ t("features_description_1") }}
-            </p>
-          </div>
+    <div class="features-wrapper container">
+      <div class="left right-bar-animation">
+        <div class="slide-img">
+          <img src="@/assets/image/features/features1.png" alt="features card">
         </div>
-        <div class="right">
-          <div class="slide-img">
-            <img src="@/assets/image/features/features2.png" alt="features card">
-          </div>
-          <div class="slide-text">
-            <h3>
-              {{ t("features_title_2") }}
-            </h3>
-            <img src="@/assets/image/featuresSeparator.svg" alt="">
-            <p>
-              {{ t("features_description_2") }}
-            </p>
-          </div>
+        <div class="slide-text">
+          <h3>
+            {{ t("features_title_1") }}
+          </h3>
+          <img src="@/assets/image/featuresSeparator.svg" alt="">
+          <p>
+            {{ t("features_description_1") }}
+          </p>
         </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="left">
-          <div class="slide-img">
-            <img src="@/assets/image/features/features3.png" alt="features card">
-          </div>
-          <div class="slide-text">
-            <h3>
-              {{ t("features_title_3") }}
-            </h3>
-            <img src="@/assets/image/featuresSeparator.svg" alt="">
-            <p>
-              {{ t("features_description_3") }}
-            </p>
-          </div>
+      </div>
+      <div class="right left-bar-animation">
+        <div class="slide-img">
+          <img src="@/assets/image/features/features2.png" alt="features card">
         </div>
-        <div class="right">
-          <div class="slide-img">
-            <img src="@/assets/image/features/features4.png" alt="features card">
-          </div>
-          <div class="slide-text">
-            <h3>
-              {{ t("features_title_4") }}
-            </h3>
-            <img src="@/assets/image/featuresSeparator.svg" alt="">
-            <p>
-              {{ t("features_description_4") }}
-            </p>
-          </div>
+        <div class="slide-text">
+          <h3>
+            {{ t("features_title_2") }}
+          </h3>
+          <img src="@/assets/image/featuresSeparator.svg" alt="">
+          <p>
+            {{ t("features_description_2") }}
+          </p>
         </div>
-      </swiper-slide>
-    </swiper>
+      </div>
+    </div>
+
   </section>
 </template>
 
 <style lang="scss" scoped>
 
 .feater {
-  height: calc(100vh - 60px);
   width: 100vw;
   display: flex;
   align-items: center;
@@ -195,65 +143,32 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
       object-position: left;
     }
   }
-  .desktopSlider {
+  .features-wrapper {
     display: none;
-    @media (min-width:768px) {
-      display: block;
-      max-width: 1600px;
-      padding: 0 20px;
-      width: 100%;
-      height: 100%;
-      .swiper-slide {
-        display: flex;
-        .left {
-          flex: 1 1 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: ease-out .9s;
-          opacity: 0;
-        }
-        .right {
-          flex: 1 1 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: ease-out .9s;
-          opacity: 0;
-        }
-        &.swiper-slide-prev {
-          .left {
-            transform: translateY(-600px);
-          }
-          .right {
-            transform: translateY(-600px);
-          }
-        }
-        &.swiper-slide-next {
-          .left {
-            transform: translateY(400px);
-          }
-          .right {
-            transform: translateY(400px);
-          }
-        }
-        &.swiper-slide-active {
-          .left {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          .right {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-      }
+    max-width: 1600px;
+    padding: 0 20px;
+    width: 100%;
+    height: 100%;
+    .left {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .right {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width:1024px) {
+      display: flex;
     }
   }
 
-  .swiper-slide {
+  .swiper-slide, .features-wrapper {
     .slide-img {
       display: flex;
       justify-content: center;
@@ -303,14 +218,21 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
 
   .mobileSlider {
     width: 100%;
-    // height: 100%;
-
-    //// alaing center content in slider
     height: auto;
     padding-bottom: 30px;
     @media (min-width:768px) {
+      .slide-img {
+      img {
+        width: 420px;
+      }
+    }
+    }
+    @media (min-width:1024px) {
       display: none;
     }
+  }
+  @media (min-width:1024px) {
+    padding-top: 30px;
   }
 }
 

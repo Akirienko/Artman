@@ -1,19 +1,20 @@
 <template>
-  <section class="about">
+  <section class="about ">
     <div class="about-image">
       <img src="@/assets/image/about/mobileArtman.webp" alt="artman">
       <img src="@/assets/image/about/deskArtman.webp" alt="artman">
+      <img class="circles" src="@/assets/image/circlesAbout.svg" alt="circles">
     </div>
     <div class="about-wrapper container">
-      <div class="content">
+      <div class="content left-bar-animation">
         <MainTextComponent>
+          <template v-slot:image>
+              <img class="a-symbol" src="@/assets/image/eSymbol.svg" alt="e">
+            </template>
           <template v-slot:undertitle>
             {{ $t("about_undertitle") }}
           </template>
           <template v-slot:title >
-            <!-- <span class="text-base">write</span> your own <br>
-            movie-making <span class="text-base">story</span><br>
-            <span class="text-base">beyond time</span> and epoch<br> -->
             {{ $t("about_title") }}
           </template>
           <template v-slot:subtitle >
@@ -27,7 +28,7 @@
           </a>
         </div>
       </div>
-      <div class="phone">
+      <div class="phone right-bar-animation">
         <img src="@/assets/image/circleBackground2.svg" alt="about artman">
 
         <div class="image">
@@ -44,15 +45,12 @@
 
 <style lang="scss" scoped>
 .about {
-  height: calc(100vh - 60px);
   &-image {
     position: absolute;
     width: 100vw;
     height: 100vh;
     right: 0;
     img {
-      // object-fit: contain;
-      // object-position: right;
       &:last-child {
         display: none;
       }
@@ -73,7 +71,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    // width: 100%;
     .content {
       .download-button {
         margin-top: 40px;
@@ -105,9 +102,10 @@
     }
     .phone {
       display: none;
+      left: 60px;
       &>img {
-        width: 488px;
-        height: 488px;
+        width: 400px;
+        height: 400px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -115,8 +113,7 @@
         transform: translate(-50%, -50%)
       }
       .image {
-        width: 326px;
-        height: 672px;
+        width: 260px;
       }
     }
     @media (min-width:1024px) {
@@ -128,6 +125,19 @@
         display: block;
         margin-right: 240px;
         order: 1;
+      }
+
+    }
+    @media (min-width:1440px) {
+      .phone {
+        &>img {
+        width: 488px;
+        height: 488px;
+      }
+      .image {
+        width: 326px;
+        height: 672px;
+      }
       }
 
     }

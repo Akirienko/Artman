@@ -23,6 +23,9 @@ const { t } = useI18n();
           </NuxtLink>
         </div>
         <div class="social-media__desktop">
+          <div class="dots">
+            <img src="@/assets/image/media/dotsDesk.svg" alt="dots">
+          </div>
           <NuxtLink to="#" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button download">
             <div class="media-block__cercle">
@@ -107,7 +110,7 @@ const { t } = useI18n();
   }
 }
 .media {
-  padding: 20px 0;
+  padding: 80px 0;
   min-height: 100vh;
   .media-bg {
     display: none;
@@ -202,6 +205,21 @@ const { t } = useI18n();
           display: flex;
           justify-content: space-between;
           margin-bottom: 150px;
+          .dots {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            height: 30px;
+            width: 110vw;
+            left: -5%;
+            @media (min-width:1640px) {
+              left: -15%;
+            }
+            @media (min-width:1920px) {
+              left: -30%;
+              width: 120vw;
+            }
+          }
           .media-block {
             display: block;
             &>img {
@@ -257,6 +275,9 @@ const { t } = useI18n();
                 }
               }
             }
+          }
+          @media (min-width:1440px) {
+            margin-bottom: 200px;
           }
         }
       }
