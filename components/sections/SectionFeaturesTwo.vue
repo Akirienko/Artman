@@ -35,7 +35,7 @@ onMounted(() => {
     <div class="features-wrapper container">
       <div class="left right-bar-animation">
         <div class="slide-img">
-          <img src="/features3.png" alt="features card">
+          <img src="/features3.webp" alt="features card">
         </div>
         <div class="slide-text">
           <h3>
@@ -49,7 +49,7 @@ onMounted(() => {
       </div>
       <div class="right left-bar-animation">
         <div class="slide-img">
-          <img src="/features4.png" alt="features card">
+          <img src="/features4.webp" alt="features card">
         </div>
         <div class="slide-text">
           <h3>
