@@ -262,6 +262,9 @@ watch(activeList, (newValue) => {
             @click="store.setActiveMenuItem(item.link), scrollToActiveLink($event, item.link), menuOpen = !menuOpen"
           >
             {{item.title}}
+            <div class="menu-line-mobile">
+              <img :style="indicatorStyle" src="@/assets/image/headerLine.svg" alt="header line">
+            </div>
           </span>
         </div>
         <div class="bottom">
@@ -403,16 +406,16 @@ header {
     display: flex;
     flex-direction: column;
     transition: ease-out .5s;
-    img {
-      position: absolute;
-      width: 100vw;
-      bottom: -20px;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, 0);
-      opacity: 0;
-      transition: ease-out .5s;
-    }
+    // img {
+    //   position: absolute;
+    //   width: 100vw;
+    //   bottom: -20px;
+    //   left: 50%;
+    //   margin-right: -50%;
+    //   transform: translate(-50%, 0);
+    //   opacity: 0;
+    //   transition: ease-out .5s;
+    // }
     &:last-child {
       margin-bottom: 0;
     }
@@ -491,36 +494,39 @@ header {
     display: flex;
     flex-direction: column;
     transition: ease-out .5s;
-    img {
+    width: 100%;
+    text-align: center;
+    .menu-line-mobile {
       position: absolute;
       width: 100vw;
-      bottom: -20px;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, 0);
+      bottom: -40px;
+      left: 0;
       opacity: 0;
       transition: ease-out .5s;
+      img {
+        object-fit: contain;
+      }
     }
     &:last-child {
       margin-bottom: 0;
     }
     &.router-link-active {
       color: var(--marble, #ECF7FF);
-      img {
+      .menu-line-mobile {
         opacity: 1;
       }
     }
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      left: -3px;
-      background: var(--marble, #ECF7FF);
-      opacity: 0;
-      transition: ease-out .3s;
-    }
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: 0;
+    //   width: 100%;
+    //   height: 1px;
+    //   left: -3px;
+    //   background: var(--marble, #ECF7FF);
+    //   opacity: 0;
+    //   transition: ease-out .3s;
+    // }
   }
   }
   .bottom {
