@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <section class="about ">
     <div class="about-image">
@@ -28,8 +32,9 @@
         </MainTextComponent>
         <div class="download-button">
           <a href="#">
-            <img src="@/assets/image/about/downloadStore.svg" alt="about artman">
-            <img src="@/assets/image/about/hoverDownload.svg" alt="about artman">
+            <span>{{ $t("download") }}</span>
+            <img src="@/assets/image/about/download.svg" alt="about artman">
+            <img src="@/assets/image/about/downloadHover.svg" alt="about artman">
           </a>
         </div>
       </div>
@@ -43,10 +48,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-
-</script>
 
 <style lang="scss" scoped>
 .about {
@@ -83,6 +84,19 @@
           height: 40px;
           width: 340px;
           display: block;
+          span {
+            color: #ECF7FF;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: 3.8px;
+            text-transform: uppercase;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+          }
           img {
             position: absolute;
             width: 100%;

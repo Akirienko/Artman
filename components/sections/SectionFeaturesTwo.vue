@@ -140,7 +140,7 @@ onMounted(() => {
         @media (min-width:1260px) {
           font-size: 24px;
           letter-spacing: 2.1px;
-          max-width: 500px;
+          max-width: 510px;
         }
       }
     }
