@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div>
     <AppPreloader v-if="!isLoaded" />
     <AppBackground />
     <AppHeader />

@@ -149,27 +149,6 @@ watch(activeList, (newValue) => {
   }
 });
 
-
-
-const addressBarHeight = ref('');
-
-function setAddressBarHeight() {
-  const windowHeight = window.innerHeight;
-  const addressBarHeightValue = document.documentElement.clientHeight - windowHeight;
-
-  addressBarHeight.value = `${addressBarHeightValue}px`;
-}
-
-onMounted(() => {
-  setAddressBarHeight();
-  window.addEventListener('resize', setAddressBarHeight);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', setAddressBarHeight);
-});
-
-
 </script>
 
 <template>
@@ -427,16 +406,6 @@ header {
     display: flex;
     flex-direction: column;
     transition: ease-out .5s;
-    // img {
-    //   position: absolute;
-    //   width: 100vw;
-    //   bottom: -20px;
-    //   left: 50%;
-    //   margin-right: -50%;
-    //   transform: translate(-50%, 0);
-    //   opacity: 0;
-    //   transition: ease-out .5s;
-    // }
     &:last-child {
       margin-bottom: 0;
     }
@@ -536,17 +505,6 @@ header {
         opacity: 1;
       }
     }
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   bottom: 0;
-    //   width: 100%;
-    //   height: 1px;
-    //   left: -3px;
-    //   background: var(--marble, #ECF7FF);
-    //   opacity: 0;
-    //   transition: ease-out .3s;
-    // }
   }
   }
   .bottom {
