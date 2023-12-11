@@ -271,7 +271,7 @@ watch(activeList, (newValue) => {
           <div class="language">
             <LangSwichComponent custom-class="mobile-lang" @click="menuOpen = false"/>
           </div>
-          <BuyButton @click="store.setActiveMenuItem('sectionMedia'), scrollToActiveLink($event, 4)" />
+          <BuyButton @click="store.setActiveMenuItem('sectionMedia'), scrollToActiveLink($event, 4), menuOpen = !menuOpen" />
         </div>
       </div>
     </div>
