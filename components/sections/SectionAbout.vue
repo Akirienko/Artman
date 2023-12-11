@@ -141,7 +141,7 @@
       }
       .image {
         width: 326px;
-        height: 672px;
+        height: 670px;
       }
       }
 

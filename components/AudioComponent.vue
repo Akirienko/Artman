@@ -1,6 +1,5 @@
 <template>
   <audio
-    autoplay
     controls
     loop
     ref="audio"
