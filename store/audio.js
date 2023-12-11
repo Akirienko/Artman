@@ -7,7 +7,7 @@ export const useAudioStore = defineStore({
       isPlaying: false,
       currentTime: 0,
       timer: null,
-      fullTime: 125
+      fullTime: 180
     }
   },
   actions: {
@@ -22,7 +22,7 @@ export const useAudioStore = defineStore({
     startTimer() {
       this.timer = setInterval(() => {
         this.currentTime++;
-        if (this.currentTime >= 125) {
+        if (this.currentTime >= 180) {
           this.currentTime=0
         }
       }, 1000);

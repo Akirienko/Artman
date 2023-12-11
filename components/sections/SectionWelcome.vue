@@ -84,7 +84,7 @@ function formatTime(timeInSeconds) {
               </span>
             </button>
             <div class="song-time">
-              {{ formatTime(currentTime) }}
+              <span>{{ formatTime(currentTime) }}</span>
               /
               {{ formatTime(fullTime) }}
             </div>
@@ -332,6 +332,9 @@ function formatTime(timeInSeconds) {
             letter-spacing: 1.7px;
             font-size: 17px;
             line-height: 15px;
+            span {
+              width: 52px;
+            }
           }
           .time {
             display: none;
@@ -412,7 +415,7 @@ function formatTime(timeInSeconds) {
           }
           .image {
             width: 326px;
-            height: 672px;
+            height: 670px;
           }
         }
       }
