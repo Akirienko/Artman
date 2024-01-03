@@ -5,10 +5,16 @@ const route = useRoute();
 
 const isUARoute = ref(false);
 
+onMounted(()=> {
+  if (route.path === '/ua') {
+    isUARoute.value = true
+  } else {
+    isUARoute.value = false
+  }
+})
+
 watch(() => route.path, (newPath) => {
-  // isUARoute = newPath === '/ua';
   if (newPath === '/ua') {
-    // console.log('UA');
     isUARoute.value = true
   } else {
     isUARoute.value = false
