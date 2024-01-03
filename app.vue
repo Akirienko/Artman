@@ -16,8 +16,18 @@ import { storeToRefs } from 'pinia'
 const store = useLoaded();
 const { isLoaded } = storeToRefs(store)
 
+// onMounted(() => {
+//   store.loadedEvent();
+// })
+
 onMounted(() => {
-  store.loadedEvent();
+  if (document.readyState === 'complete') {
+    store.loadedEvent();
+  } else {
+    window.addEventListener('load', () => {
+      store.loadedEvent();
+    })
+  }
 })
 
 </script>
