@@ -17,7 +17,9 @@ watchEffect(() => {
 
 <template>
   <section class="media">
-    <img class="media-bg" src="@/assets/image/media/mediaBackground.webp" alt="">
+    <img class="media-bg mobile" src="@/assets/image/media/mediaBackgroundMobile.webp" alt="bg">
+    <img class="media-bg" src="@/assets/image/media/mediaBackground.webp" alt="bg">
+
     <div class="media-wrapper container">
       <div class="social-media">
         <div class="social-media__mobile">
@@ -46,7 +48,7 @@ watchEffect(() => {
             </div>
             <span>{{ t("download_wallpaper") }}</span>
           </NuxtLink>
-          <NuxtLink to="#" class="media-block">
+          <NuxtLink to="https://www.youtube.com/watch?v=GiKZKtzfVxQ&ab_channel=RolandoAguillon" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button youtube">
             <div class="media-block__cercle">
               <img src="@/assets/image/media/listen.svg" alt="download">
@@ -66,7 +68,7 @@ watchEffect(() => {
       </div>
       <div class="contact-us">
         <div class="logo">
-          <img src="@/assets/image/wayheartLogo.svg" alt="wayheart">
+          <img src="@/assets/image/wayheartLogo.webp" alt="wayheart">
         </div>
         <div class="store">
           <NuxtLink to="#">
@@ -76,20 +78,20 @@ watchEffect(() => {
           </NuxtLink>
           <NuxtLink to="#">
             <span>{{ t("google_play") }}</span>
-            <img src="@/assets/image/media/googlePlay.svg" alt="appstore">
-            <img src="@/assets/image/media/googlePlayHover.svg" alt="appstore">
+            <img src="@/assets/image/media/googlePlay.svg" alt="googlePlay">
+            <img src="@/assets/image/media/googlePlayHover.svg" alt="googlePlay">
           </NuxtLink>
         </div>
         <div :class="`contacts ${isUARoute ? 'ua' : ''}`">
           <NuxtLink to="#">
             <span>{{ t("contact_us") }}</span>
-            <img src="@/assets/image/media/gmail.svg" alt="appstore">
-            <img src="@/assets/image/media/gmailHover.svg" alt="appstore">
+            <img src="@/assets/image/media/gmail.svg" alt="gmail">
+            <img src="@/assets/image/media/gmailHover.svg" alt="gmail">
           </NuxtLink>
           <NuxtLink to="#">
             <span>{{ t("follow_us") }}</span>
-            <img src="@/assets/image/media/twitter.svg" alt="appstore">
-            <img src="@/assets/image/media/twitterHover.svg" alt="appstore">
+            <img src="@/assets/image/media/linkedIn.svg" alt="linkedIn">
+            <img src="@/assets/image/media/linkedInHover.svg" alt="linkedIn">
           </NuxtLink>
         </div>
       </div>
@@ -126,6 +128,12 @@ watchEffect(() => {
   min-height: 100vh;
   .media-bg {
     display: none;
+  }
+  .media-bg.mobile {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
   &-wrapper {
     .social-media {
@@ -198,6 +206,9 @@ watchEffect(() => {
   @media (min-width:1024px) {
     height: calc(100vh - 60px);
     padding: 0;
+    .media-bg.mobile {
+      display: none;
+    }
     .media-bg {
       display: block;
       position: absolute;

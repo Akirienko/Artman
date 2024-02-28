@@ -124,9 +124,10 @@ function formatTime(timeInSeconds) {
         </div>
         <div :class="`main-content__right ${isLoaded ? 'right-animation' : ''}`">
           <div class="phone">
-            <img src="@/assets/image/circleBackground2.svg" class="phone-circle" :class="{ animate: animating }" alt="about artman">
+            <!-- <img src="@/assets/image/circleBackground2.svg" class="phone-circle" :class="{ animate: animating }" alt="about artman"> -->
             <div class="image">
-              <img class="wave" src="@/assets/image/main/IphoneMain.webp" alt="wave">
+              <img class="mobile" src="@/assets/image/main/posterMobile.webp" alt="poster">
+              <img class="desk" src="@/assets/image/main/poster.webp" alt="poster">
             </div>
             <div class="store">
               <NuxtLink
@@ -236,9 +237,6 @@ function formatTime(timeInSeconds) {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  @media (min-width:760px) {
-    justify-content: start;
-  }
   .download-button {
     &:first-child {
       margin-right: 20px;
@@ -253,10 +251,11 @@ function formatTime(timeInSeconds) {
   &-content {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100%;
     z-index: 1;
     &__left {
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: center;
       height: 100%;
@@ -354,6 +353,7 @@ function formatTime(timeInSeconds) {
         }
       }
       @media (min-width:1024px) {
+        display: flex;
         justify-content: center;
         transition: 3s;
         transform: translateX(-150%);
@@ -361,9 +361,21 @@ function formatTime(timeInSeconds) {
       }
     }
     &__right {
-      display: none;
+      .phone {
+        .image {
+          width: 343px;
+          height: 487px;
+          .desk {
+            display: none;
+          }
+          @media (min-width:680px) {
+            width: 450px;
+            height: 570px;
+            margin-bottom: 24px;
+          }
+        }
+      }
       @media (min-width:1024px) {
-        display: block;
         margin-bottom: 20px;
         transition: 3s;
         transform: translateX(150%);
@@ -372,50 +384,62 @@ function formatTime(timeInSeconds) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          .phone-circle {
-            width: 400px;
-            height: 400px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-50%, -50%);
-            animation: rotateBack 2s ease-in-out forwards;
-            &.animate {
-              animation: rotate 2s linear;
-            }
-          }
+          // .phone-circle {
+          //   width: 400px;
+          //   height: 400px;
+          //   position: absolute;
+          //   top: 50%;
+          //   left: 50%;
+          //   margin-right: -50%;
+          //   transform: translate(-50%, -50%);
+          //   animation: rotateBack 2s ease-in-out forwards;
+          //   &.animate {
+          //     animation: rotate 2s linear;
+          //   }
+          // }
           .image {
-            width: 230px;
+            width: 310px;
+            height: 480px;
             margin-bottom: 40px;
+            .mobile {
+              display: none;
+            }
+            .desk {
+              display: block;
+            }
           }
         }
       }
       @media (min-width:1280px) {
-        right: 30px;
         .phone {
-          .phone-circle {
-            width: 430px;
-            height: 430px;
-          }
+          // .phone-circle {
+          //   width: 430px;
+          //   height: 430px;
+          // }
           .image {
-            width: 260px;
+            width: 358px;
+            height: 510px;
           }
         }
       }
       @media (min-width:1440px) {
-        right: 40px;
+        .phone {
+          .image {
+            width: 490px;
+            height: 680px;
+          }
+        }
       }
       @media (min-width:1680px) {
         left: 20px;
         .phone {
-          .phone-circle {
-            width: 488px;
-            height: 488px;
-          }
+          // .phone-circle {
+          //   width: 488px;
+          //   height: 488px;
+          // }
           .image {
-            width: 326px;
-            height: 670px;
+            width: 607px;
+            height: 860px;
           }
         }
       }

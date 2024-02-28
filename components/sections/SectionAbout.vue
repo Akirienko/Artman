@@ -39,8 +39,6 @@
         </div>
       </div>
       <div class="phone right-bar-animation">
-        <img src="@/assets/image/circleBackground2.svg" alt="about artman">
-
         <div class="image">
           <img src="@/assets/image/about/aboutPhone.webp" alt="about artman">
         </div>
@@ -76,6 +74,7 @@
   &-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100%;
     .content {
       .download-button {
@@ -122,15 +121,15 @@
     .phone {
       display: none;
       left: 60px;
-      &>img {
-        width: 400px;
-        height: 400px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%)
-      }
+      // &>img {
+      //   width: 400px;
+      //   height: 400px;
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   margin-right: -50%;
+      //   transform: translate(-50%, -50%)
+      // }
       .image {
         width: 260px;
       }
@@ -147,14 +146,22 @@
       }
 
     }
+    @media (min-width:1280px) {
+      .phone {
+      .image {
+        width: 380px;
+      }
+    }
+
+    }
     @media (min-width:1640px) {
       .phone {
-        &>img {
-        width: 488px;
-        height: 488px;
-      }
+      //   &>img {
+      //   width: 488px;
+      //   height: 488px;
+      // }
       .image {
-        width: 326px;
+        width: 488px;
         height: 670px;
       }
       }
