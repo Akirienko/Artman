@@ -47,7 +47,8 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
 <template>
   <section class="feater">
     <div class="feater-background">
-      <img src="@/assets/image/features/backgroundFeatures.webp" alt="features background">
+      <img class="mobile" src="@/assets/image/features/backgroundFeaturesMobile.webp" alt="features background">
+      <img class="desk" src="@/assets/image/features/backgroundFeatures.webp" alt="features background">
       <img class="circles" src="@/assets/image/circlesFeatures.svg" alt="circles">
     </div>
     <swiper
@@ -139,8 +140,19 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
     position: absolute;
     width: 100%;
     height: 100%;
+    .desk {
+      display: none;
+    }
     img {
       object-position: left;
+    }
+    @media (min-width:1024px) {
+      .desk {
+        display: block;
+      }
+      .mobile {
+        display: none;
+      }
     }
   }
   .features-wrapper {
@@ -220,6 +232,7 @@ const modules = [Mousewheel, Pagination, EffectCreative, Parallax];
     width: 100%;
     height: auto;
     padding-bottom: 30px;
+    margin-top: 50px;
     @media (min-width:768px) {
       .slide-img {
       img {
