@@ -47,7 +47,7 @@ function formatTime(timeInSeconds) {
 
 
     </div>
-    <img class="circles" src="@/assets/image/circlesMain.svg" alt="circles">
+    <!-- <img class="circles" src="@/assets/image/circlesMain.svg" alt="circles"> -->
 
     <div class="main-content container">
         <div :class="`main-content__left ${isLoaded ? 'left-animation' : ''}`">
@@ -183,7 +183,12 @@ function formatTime(timeInSeconds) {
       right: 0;
       animation: disappear 1s ease-in-out forwards;
     }
-
+  }
+  @media (min-width: 1640px){
+    .lightning {
+      width: 1500px;
+      right: -150px;
+    }
   }
 }
 
@@ -254,6 +259,7 @@ function formatTime(timeInSeconds) {
     justify-content: center;
     height: 100%;
     z-index: 1;
+    padding-top: 30px;
     &__left {
       display: none;
       flex-direction: column;
@@ -365,6 +371,7 @@ function formatTime(timeInSeconds) {
         .image {
           width: 343px;
           height: 487px;
+          margin-bottom: 24px;
           .desk {
             display: none;
           }
@@ -384,23 +391,11 @@ function formatTime(timeInSeconds) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          // .phone-circle {
-          //   width: 400px;
-          //   height: 400px;
-          //   position: absolute;
-          //   top: 50%;
-          //   left: 50%;
-          //   margin-right: -50%;
-          //   transform: translate(-50%, -50%);
-          //   animation: rotateBack 2s ease-in-out forwards;
-          //   &.animate {
-          //     animation: rotate 2s linear;
-          //   }
-          // }
+
           .image {
             width: 310px;
             height: 480px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             .mobile {
               display: none;
             }
@@ -417,31 +412,21 @@ function formatTime(timeInSeconds) {
           //   height: 430px;
           // }
           .image {
-            width: 358px;
-            height: 510px;
+            width: 376px;
+            height: 573px;
           }
         }
       }
       @media (min-width:1440px) {
         .phone {
           .image {
-            width: 490px;
-            height: 680px;
+            width: 476px;
+            height: 673px;
           }
         }
       }
       @media (min-width:1680px) {
         left: 20px;
-        .phone {
-          // .phone-circle {
-          //   width: 488px;
-          //   height: 488px;
-          // }
-          .image {
-            width: 607px;
-            height: 860px;
-          }
-        }
       }
       @media (min-width:1920px) {
         right: 0;
@@ -451,6 +436,7 @@ function formatTime(timeInSeconds) {
     @media (min-width:1024px) {
       justify-content: space-around;
       margin-top: 60px;
+      padding-top: 0px;
     }
   }
 }

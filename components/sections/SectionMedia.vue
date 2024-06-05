@@ -26,13 +26,13 @@ watchEffect(() => {
           <div class="dots">
             <img src="@/assets/image/dots.svg" alt="dots">
           </div>
-          <NuxtLink to="#">
+          <NuxtLink target="_blank" to="#">
             <img src="@/assets/image/media/trailer.png" alt="button trailer">
           </NuxtLink>
-          <NuxtLink to="#">
+          <NuxtLink target="_blank" to="#">
             <img src="@/assets/image/media/wallpaper.png" alt="button wallpaper">
           </NuxtLink>
-          <NuxtLink to="#">
+          <NuxtLink target="_blank" to="#">
             <img src="@/assets/image/media/youtube.png" alt="button youtube">
           </NuxtLink>
         </div>
@@ -40,7 +40,7 @@ watchEffect(() => {
           <div class="dots">
             <img src="@/assets/image/media/dotsDesk.svg" alt="dots">
           </div>
-          <NuxtLink to="#" class="media-block">
+          <NuxtLink target="_blank" to="#" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button download">
             <div class="media-block__cercle">
               <img src="@/assets/image/media/downloadDesk.svg" alt="download">
@@ -48,7 +48,7 @@ watchEffect(() => {
             </div>
             <span>{{ t("download_wallpaper") }}</span>
           </NuxtLink>
-          <NuxtLink to="https://www.youtube.com/watch?v=GiKZKtzfVxQ&ab_channel=RolandoAguillon" class="media-block">
+          <NuxtLink target="_blank" to="https://www.youtube.com/watch?v=GiKZKtzfVxQ&ab_channel=RolandoAguillon" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button youtube">
             <div class="media-block__cercle">
               <img src="@/assets/image/media/listen.svg" alt="download">
@@ -56,7 +56,7 @@ watchEffect(() => {
             </div>
             <span>{{ t("listen_youtube") }}</span>
           </NuxtLink>
-          <NuxtLink to="#" class="media-block">
+          <NuxtLink to="#" target="_blank" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button trailer">
             <div class="media-block__cercle">
               <img src="@/assets/image/media/play.svg" alt="download">
@@ -71,24 +71,24 @@ watchEffect(() => {
           <img src="@/assets/image/wayheartLogo.webp" alt="wayheart">
         </div>
         <div class="store">
-          <NuxtLink to="#">
+          <NuxtLink to="#" target="_blank">
             <span>{{ t("app_store") }}</span>
             <img src="@/assets/image/media/appStore.svg" alt="appstore">
             <img src="@/assets/image/media/appStoreHover.svg" alt="appstore">
           </NuxtLink>
-          <NuxtLink to="#">
+          <NuxtLink to="#" target="_blank">
             <span>{{ t("google_play") }}</span>
             <img src="@/assets/image/media/googlePlay.svg" alt="googlePlay">
             <img src="@/assets/image/media/googlePlayHover.svg" alt="googlePlay">
           </NuxtLink>
         </div>
         <div :class="`contacts ${isUARoute ? 'ua' : ''}`">
-          <NuxtLink to="#">
+          <NuxtLink to="#" target="_blank">
             <span>{{ t("contact_us") }}</span>
             <img src="@/assets/image/media/gmail.svg" alt="gmail">
             <img src="@/assets/image/media/gmailHover.svg" alt="gmail">
           </NuxtLink>
-          <NuxtLink to="#">
+          <NuxtLink to="#" target="_blank">
             <span>{{ t("follow_us") }}</span>
             <img src="@/assets/image/media/linkedIn.svg" alt="linkedIn">
             <img src="@/assets/image/media/linkedInHover.svg" alt="linkedIn">

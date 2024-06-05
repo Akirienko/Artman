@@ -2,8 +2,8 @@
   <div class="page-loader" >
     <p>A ROLANDO AGUILLON’S GAME</p>
     <div class="page-loader__background">
-      <img src="@/assets/image/preloader/leftFace.png" alt="preloader artman">
-      <img src="@/assets/image/preloader/rightFace.png" alt="preloader artman">
+      <img class="desk" src="@/assets/image/preloader/preloader.webp" alt="preloader artman">
+      <img class="mob" src="@/assets/image/preloader/preloaderMobile.webp" alt="preloader artman">
     </div>
     <img class="preloader-logo" src="@/assets/image/preloadingLogo.svg" alt="preloader svg">
     <div class="page-loader__loading">
@@ -69,20 +69,15 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      img {
-        position: absolute;
-        height: 500px;
-        object-fit: contain;
-        width: auto;
-        top: 0;
-        @media (min-width: 1024px) {
-          height: 90vh;
+      .desk {
+        display: none;
+      }
+      @media (min-width:1024px) {
+        .desk {
+          display: block;
         }
-        &:first-child {
-          left: 0;
-        }
-        &:last-child {
-          right: 0;
+        .mob {
+          display: none;
         }
       }
     }

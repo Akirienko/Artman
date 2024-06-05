@@ -50,8 +50,8 @@ const onSlideChange = (swiper) => {
 
 <template>
   <div :class="`black-background ${blackBackground ? 'active' : ''}`">
-    <img src="@/assets/image/preloader/leftFace.png" alt="preloader artman">
-    <img src="@/assets/image/preloader/rightFace.png" alt="preloader artman">
+    <img class="desk" src="@/assets/image/preloader/preloader.webp" alt="preloader artman">
+    <img class="mob" src="@/assets/image/preloader/preloaderMobile.webp" alt="preloader artman">
   </div>
   <swiper
       :direction="'vertical'"
@@ -114,19 +114,18 @@ const onSlideChange = (swiper) => {
   }
   img {
     position: absolute;
-    height: 500px;
-    object-fit: contain;
-    width: auto;
-    top: 0;
-    @media (min-width: 1024px) {
-      height: 100vh;
-    }
-    &:first-child {
-      left: 0;
-    }
-    &:last-child {
-      right: 0;
-    }
+    opacity: .7;
+  }
+}
+.desk {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .desk {
+    display: block;
+  }
+  .mob {
+    display: none;
   }
 }
 .desktop {

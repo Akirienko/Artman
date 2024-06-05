@@ -5,8 +5,8 @@
 <template>
   <section class="about ">
     <div class="about-image">
-      <img src="@/assets/image/about/mobileArtman.webp" alt="artman">
-      <img src="@/assets/image/about/deskArtman.webp" alt="artman">
+      <img class="mobile" src="@/assets/image/features/backgroundFeaturesMobile.webp" alt="features background">
+      <img class="desk" src="@/assets/image/features/backgroundFeatures.webp" alt="features background">
       <img class="circles" src="@/assets/image/circlesAbout.svg" alt="circles">
     </div>
     <div class="about-wrapper container">
@@ -54,20 +54,18 @@
     width: 100vw;
     height: 100vh;
     right: 0;
-    img {
-      &:last-child {
-        display: none;
-      }
+    .desk {
+      display: none;
     }
     @media (min-width:1024px) {
+      .desk {
+        display: block;
+      }
+      .mobile {
+        display: none;
+      }
       img {
         object-fit: cover;
-        &:first-child {
-          display: none;
-        }
-        &:last-child {
-          display: block;
-        }
       }
     }
   }
