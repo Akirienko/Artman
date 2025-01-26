@@ -56,7 +56,7 @@ watchEffect(() => {
             </div>
             <span>{{ t("listen_youtube") }}</span>
           </NuxtLink>
-          <NuxtLink to="#" target="_blank" class="media-block">
+          <NuxtLink to="https://youtu.be/nzvvfrmxdVY" target="_blank" class="media-block">
             <img src="@/assets/image/media/mediaButtonBlock.png" alt="button trailer">
             <div class="media-block__cercle">
               <img src="@/assets/image/media/play.svg" alt="download">
